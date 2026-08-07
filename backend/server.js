@@ -15,6 +15,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
+  "https://the-arti-luxe-backend.vercel.app/",
   process.env.CORS_ORIGIN
 ].filter(Boolean);
 
