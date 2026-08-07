@@ -1,0 +1,165 @@
+
+
+@import "tailwindcss";
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #050505;
+  color: #FFFFFF;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.display-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 72px;
+  line-height: 1.2;
+}
+
+.heading-lg {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.heading-md {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.heading-sm {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Links */
+a {
+  color: #D4AF37;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #F6E27A;
+}
+
+/* Utility Classes */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.content-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-spacing {
+  padding: 140px 20px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Gold Gradient Text */
+.text-gold {
+  background: linear-gradient(90deg, #D4AF37, #F6E27A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Border & Dividers */
+.gold-border {
+  border-color: #D4AF37;
+}
+
+.divider {
+  border-top: 1px solid #2A2A2A;
+}
+
+.gold-divider {
+  border-top: 1px solid #D4AF37;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0E0E0E;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F6E27A;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .display-text {
+    font-size: 48px;
+  }
+
+  .heading-lg {
+    font-size: 24px;
+  }
+
+  .section-spacing {
+    padding: 60px 20px;
+  }
+}
+
