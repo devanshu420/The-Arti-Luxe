@@ -16,6 +16,7 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:5173',
   "https://the-arti-luxe-5zfj.vercel.app",
+  "https://www.theartiluxe.co.in",
   process.env.CORS_ORIGIN
 ].filter(Boolean);
 
