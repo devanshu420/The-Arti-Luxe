@@ -64,7 +64,7 @@ export default function PortfolioSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 18 },
     visible: {
       opacity: 1,
       y: 0,
@@ -73,7 +73,7 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-background-secondary py-1 sm:py-0 lg:py-0">
+    <section className="relative overflow-hidden bg-background-secondary py-10 sm:py-16 lg:py-20">
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
@@ -88,10 +88,10 @@ export default function PortfolioSection() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-[1100px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-[1100px] px-3 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-10 sm:mb-12"
+          className="text-center mb-8 sm:mb-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -99,14 +99,14 @@ export default function PortfolioSection() {
         >
           <motion.p
             variants={itemVariants}
-            className="text-primary text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase"
+            className="text-primary text-[10px] sm:text-xs font-semibold tracking-[0.25em] sm:tracking-[0.3em] uppercase"
           >
             — Our Work —
           </motion.p>
 
           <motion.h2
             variants={itemVariants}
-            className="mt-3 font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] text-white"
+            className="mt-2 font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white"
           >
             Check Out Our{" "}
             <span className="bg-gradient-to-r from-[#D4AF37] via-[#F6E27A] to-[#D4AF37] bg-clip-text text-transparent">
@@ -116,16 +116,16 @@ export default function PortfolioSection() {
 
           <motion.p
             variants={itemVariants}
-            className="mx-auto mt-4 max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed text-text-secondary font-light"
+            className="mx-auto mt-2 sm:mt-3 max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed text-text-secondary font-light px-2"
           >
             A curated gallery of bridal, party, editorial, and luxury beauty looks
             crafted with premium artistry and cinematic detail.
           </motion.p>
         </motion.div>
 
-        {/* 3-Column Grid with Compact Card Sizes */}
+        {/* 2-Column Grid on Mobile (2x3 Matrix) | 3-Column Grid on Desktop */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 justify-items-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -136,7 +136,7 @@ export default function PortfolioSection() {
               key={item.id}
               variants={itemVariants}
               whileHover={shouldReduceMotion ? {} : { y: -4 }}
-              className="group relative w-full max-w-[320px] overflow-hidden rounded-xl border border-[#D4AF37]/20 bg-[#111111]/80 shadow-md aspect-[3/4]"
+              className="group relative w-full overflow-hidden rounded-xl border border-[#D4AF37]/20 bg-[#111111]/80 shadow-md aspect-[3/4]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               
@@ -147,16 +147,17 @@ export default function PortfolioSection() {
                 className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
               />
               
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* Gradient overlay: static subtle on mobile, interactive on hover for desktop */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/30 to-transparent sm:opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
               {/* Overlay Content */}
-              <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                <div className="inline-flex items-center gap-1 rounded-full border border-[#D4AF37]/30 bg-black/50 px-2.5 py-0.5 text-[9px] tracking-wider uppercase text-[#F6E27A] backdrop-blur-md">
-                  <Sparkles className="h-2.5 w-2.5" />
+              <div className="absolute inset-x-0 bottom-0 p-2.5 sm:p-4 sm:opacity-0 sm:translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                <div className="inline-flex items-center gap-1 rounded-full border border-[#D4AF37]/30 bg-black/60 px-2 py-0.5 text-[8px] sm:text-[9px] tracking-wider uppercase text-[#F6E27A] backdrop-blur-md">
+                  <Sparkles className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
                   {item.category}
                 </div>
 
-                <h3 className="mt-1.5 font-display text-base font-semibold text-white truncate">
+                <h3 className="mt-1 font-display text-xs sm:text-base font-semibold text-white truncate">
                   {item.title}
                 </h3>
               </div>
@@ -166,7 +167,7 @@ export default function PortfolioSection() {
 
         {/* Action Button */}
         <motion.div
-          className="mt-10 text-center"
+          className="mt-8 sm:mt-10 text-center"
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"

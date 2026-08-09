@@ -23,7 +23,7 @@ export default function Navbar() {
     { label: "SERVICES", href: "/services" },
     { label: "PORTFOLIO", href: "/portfolio" },
     { label: "CLASSES", href: "/classes" },
-    { label: "ABOUT", href: "/about" }
+    { label: "ABOUT", href: "/about" },
   ];
 
   return (
@@ -37,27 +37,22 @@ export default function Navbar() {
           : "bg-gradient-to-b from-black/80 via-black/40 to-transparent py-2"
       }`}
     >
-      <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-        <div className="flex h-15 items-center justify-between">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
+        <div className="flex h-16 sm:h-20 items-center justify-between">
+          
           {/* Logo */}
-<motion.div
-  // whileHover={{ scale: 1.04 }}
-  // whileTap={{ scale: 0.98 }}
-  // transition={{ type: "spring", stiffness: 300, damping: 18 }}
->
-  <Link to="/" className="flex items-center gap-3 shrink-0">
-    <motion.img
-      // animate={{ rotate: isScrolled ? 360 : 0 }}
-      // transition={{ duration: 0.8, ease: "easeInOut" }}
-      src="https://ik.imagekit.io/asdf5690/Makeup/Logo.png"
-      alt="Arti Luxe Logo"
-      className="h-[168px] sm:h-[80px] w-auto object-contain drop-shadow-[0_0_12px_rgba(212,175,55,0.3)]"
-    />
-    <span className="hidden sm:block font-serif text-xl font-bold text-[#D4AF37] tracking-widest uppercase">
-     𝖳𝖧𝖤 𝖠𝖱𝖳𝖨 𝖫𝖴𝖷𝖤
-    </span>
-  </Link>
-</motion.div>
+          <motion.div>
+            <Link to="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <motion.img
+                src="https://ik.imagekit.io/asdf5690/Makeup/Logo.png"
+                alt="Arti Luxe Logo"
+                className="h-[52px] sm:h-[80px] w-auto object-contain drop-shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+              />
+              <span className="hidden sm:block font-serif text-xl font-bold text-[#D4AF37] tracking-widest uppercase">
+                𝖳𝖧𝖤 ARTI 𝖫𝖴𝖷𝖤
+              </span>
+            </Link>
+          </motion.div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
@@ -75,7 +70,9 @@ export default function Navbar() {
                   <Link
                     to={link.href}
                     className={`relative text-xs font-semibold tracking-[0.2em] uppercase transition-colors ${
-                      active ? "text-[#D4AF37]" : "text-gray-200 hover:text-[#D4AF37]"
+                      active
+                        ? "text-[#D4AF37]"
+                        : "text-gray-200 hover:text-[#D4AF37]"
                     } group`}
                   >
                     {link.label}
@@ -84,7 +81,11 @@ export default function Navbar() {
                       className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F6E27A] ${
                         active ? "w-full" : "w-0 group-hover:w-full"
                       }`}
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   </Link>
                 </motion.div>
@@ -158,7 +159,9 @@ export default function Navbar() {
                       <Link
                         to={link.href}
                         className={`block px-5 py-3.5 text-xs font-medium tracking-[0.15em] uppercase border-b border-white/5 last:border-b-0 transition-colors ${
-                          active ? "text-[#D4AF37] font-semibold bg-[#D4AF37]/10" : "text-gray-200 hover:text-[#D4AF37]"
+                          active
+                            ? "text-[#D4AF37] font-semibold bg-[#D4AF37]/10"
+                            : "text-gray-200 hover:text-[#D4AF37]"
                         }`}
                         onClick={() => setIsOpen(false)}
                       >

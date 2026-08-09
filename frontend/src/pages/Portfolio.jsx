@@ -7,7 +7,7 @@ const portfolioItems = [
   { id: 1, title: "Royal North Indian Bridal", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/watermarked_img_7148972934840787390.png", aspect: "aspect-[3/4]", likes: 245 },
   { id: 2, title: "Editorial Soft Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg", aspect: "aspect-[4/5]", likes: 189 },
   { id: 3, title: "Traditional Kundan Look", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gemini_Generated_Image_t56mkqt56mkqt56m.png", aspect: "aspect-[2/3]", likes: 315 },
-  { id: 4, title: "Smokey Eye Reception Glam", category: "Reception", image: "hhttps://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg", aspect: "aspect-[3/4]", likes: 167 },
+  { id: 4, title: "Smokey Eye Reception Glam", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg", aspect: "aspect-[3/4]", likes: 167 },
   { id: 5, title: "Minimal Glow Cocktail", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg", aspect: "aspect-[4/5]", likes: 198 },
   { id: 6, title: "Classic Red Lip Engagement", category: "Engagement", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[2/3]", likes: 142 },
   { id: 7, title: "High Fashion Metallic Gloss", category: "Editorial", image: "https://images.unsplash.com/photo-1500840218059-8f69f5d60c2e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 204 },
@@ -15,7 +15,7 @@ const portfolioItems = [
   { id: 9, title: "Velvet Matte Luxe Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg", aspect: "aspect-[3/4]", likes: 178 },
   { id: 10, title: "Soft Rose Engagement", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg", aspect: "aspect-[2/3]", likes: 230 },
   { id: 11, title: "Traditional South Indian Silk", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg", aspect: "aspect-[4/5]", likes: 289 },
-  { id: 12, title: "Glass Skin Dewy Finish", category: "Party", image: "", aspect: "aspect-[3/4]", likes: 156 },
+  { id: 12, title: "Glass Skin Dewy Finish", category: "Party", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 156 },
   { id: 13, title: "Classic Bronze Eyes", category: "Reception", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[2/3]", likes: 194 },
   { id: 14, title: "Boho Chic Hair & Makeup", category: "Editorial", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[4/5]", likes: 310 },
   { id: 15, title: "Deep Crimson Bridal Glam", category: "Bridal", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 276 },
@@ -45,14 +45,6 @@ const portfolioItems = [
   { id: 39, title: "Golden Bronze Reception", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg", aspect: "aspect-[3/4]", likes: 219 },
   { id: 40, title: "Soft Peach Mehendi Look", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/hdjf.jpeg", aspect: "aspect-[4/5]", likes: 165 },
   { id: 41, title: "Bronze Goddess Party Glam", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg", aspect: "aspect-[2/3]", likes: 191 },
-  { id: 42, title: "Opulent Velvet Bridal", category: "Bridal", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.18.46.mp4", aspect: "aspect-[3/4]", likes: 312 },
-  { id: 43, title: "Smokey Glitter Cocktail", category: "Reception", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.14.17.mp4", aspect: "aspect-[4/5]", likes: 207 },
-  { id: 44, title: "Avant-Garde High Fashion", category: "Editorial", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.12.32.mp4", aspect: "aspect-[2/3]", likes: 225 },
-  { id: 45, title: "Soft Glam Haldi Glow", category: "Engagement", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.16.27.mp4", aspect: "aspect-[3/4]", likes: 174 },
-  { id: 46, title: "Luminous Glass Skin Party", category: "Party", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.12.32%20(1).mp4", aspect: "aspect-[4/5]", likes: 183 },
-  { id: 47, title: "Royal Emerald Bridal Look", category: "Bridal", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.19.38.mp4", aspect: "aspect-[2/3]", likes: 338 },
-  { id: 48, title: "Glossy Monochromatic Beauty", category: "Editorial", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.19.12.mp4", aspect: "aspect-[3/4]", likes: 197 },
-  { id: 49, title: "Sparkling Champagne Sangeet", category: "Reception", video: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Video%202026-08-06%20at%2018.17.05.mp4", aspect: "aspect-[4/5]", likes: 241 },
 ];
 
 const categories = ["ALL", "BRIDAL", "ENGAGEMENT", "RECEPTION", "PARTY", "EDITORIAL"];
@@ -101,36 +93,36 @@ export default function Portfolio() {
   };
 
   return (
-    <main className="min-h-screen pt-28 pb-16 bg-[#050505] text-white font-sans relative overflow-hidden">
+    <main className="min-h-screen pt-24 sm:pt-28 pb-16 bg-[#050505] text-white font-sans relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#D4AF37]/10 blur-[180px] pointer-events-none" />
 
       {/* FULL WIDTH CONTAINER */}
-      <div className="w-full px-3 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full px-2.5 sm:px-6 lg:px-8 relative z-10">
         
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-8"
+          className="text-center max-w-3xl mx-auto mb-6 sm:mb-8"
         >
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="h-[1px] w-10 bg-[#D4AF37]" />
-            <span className="text-xs uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">
+            <div className="h-[1px] w-8 sm:w-10 bg-[#D4AF37]" />
+            <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#D4AF37] font-semibold">
               CURATED ARTISTRY
             </span>
-            <div className="h-[1px] w-10 bg-[#D4AF37]" />
+            <div className="h-[1px] w-8 sm:w-10 bg-[#D4AF37]" />
           </div>
 
           <h1
-            className="text-4xl sm:text-6xl font-light text-white tracking-tight mb-3"
+            className="text-3xl sm:text-6xl font-light text-white tracking-tight mb-2 sm:mb-3"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             Portfolio <span className="text-[#D4AF37] italic font-normal">Gallery</span>
           </h1>
 
-          <p className="text-gray-400 text-sm sm:text-base leading-relaxed font-light">
+          <p className="text-gray-400 text-xs sm:text-base leading-relaxed font-light px-2">
             Explore our collection of bespoke bridal looks, editorial shoots, and party glam created with luxury products and precision artistry.
           </p>
         </motion.div>
@@ -140,13 +132,13 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-8"
+          className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`relative px-5 py-2 rounded-full text-[11px] font-semibold tracking-[0.2em] transition-all duration-300 uppercase ${
+              className={`relative px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] transition-all duration-300 uppercase ${
                 activeCategory === cat
                   ? "text-black bg-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)]"
                   : "text-gray-300 border border-white/10 bg-black/40 hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
@@ -157,10 +149,10 @@ export default function Portfolio() {
           ))}
         </motion.div>
 
-        {/* PINTEREST MASONRY GRID (5 COLUMNS) */}
+        {/* PINTEREST MASONRY STAGGERED GRID (2 COLUMNS MOBILE, 5 COLUMNS DESKTOP) */}
         <motion.div
           layout
-          className="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-3 space-y-3 min-h-[600px]"
+          className="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-2.5 sm:gap-3 space-y-2.5 sm:space-y-3 min-h-[500px]"
         >
           <AnimatePresence mode="wait">
             {currentItems.map((item) => (
@@ -174,7 +166,7 @@ export default function Portfolio() {
                 className="break-inside-avoid relative group rounded-lg overflow-hidden cursor-pointer border border-white/10 bg-[#0a0a0a] hover:border-[#D4AF37]/60 transition-all duration-300 shadow-md"
                 onClick={() => setSelectedImage(item)}
               >
-                {/* Image */}
+                {/* Image Container with Dynamic Aspect Ratios */}
                 <div className={`w-full ${item.aspect} overflow-hidden bg-zinc-900`}>
                   <img
                     src={item.image}
@@ -184,39 +176,42 @@ export default function Portfolio() {
                   />
                 </div>
 
-                {/* Gradient Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 flex flex-col justify-between">
-                  <div className="flex items-center justify-between translate-y-[-6px] group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="px-2 py-0.5 rounded-full text-[9px] uppercase tracking-widest bg-[#D4AF37] text-black font-bold">
+                {/* Overlay Container: Always Visible on Mobile, Hover Reveal on Desktop */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2 sm:p-3 flex flex-col justify-between pointer-events-none">
+                  
+                  {/* Top Bar: Category Badge & Like Button */}
+                  <div className="flex items-center justify-between pointer-events-auto">
+                    <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] uppercase tracking-wider bg-[#D4AF37] text-black font-bold shadow-sm">
                       {item.category}
                     </span>
 
                     <button
                       onClick={(e) => toggleLike(e, item.id)}
-                      className="h-7 w-7 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors"
+                      className="h-6 w-6 sm:h-7 sm:w-7 rounded-full bg-black/70 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:text-[#D4AF37] transition-colors"
                     >
                       <Heart
-                        size={13}
+                        size={11}
                         className={likedItems[item.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
                       />
                     </button>
                   </div>
 
-                  <div className="translate-y-[6px] group-hover:translate-y-0 transition-transform duration-300 flex items-end justify-between gap-2">
+                  {/* Bottom Bar: Title & Maximize Button */}
+                  <div className="flex items-end justify-between gap-1.5 pointer-events-auto">
                     <div className="overflow-hidden">
                       <h3
-                        className="text-xs text-white font-medium truncate"
+                        className="text-[10px] sm:text-xs text-white font-medium truncate drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]"
                         style={{ fontFamily: "'Playfair Display', serif" }}
                       >
                         {item.title}
                       </h3>
-                      <p className="text-[9px] text-gray-300 flex items-center gap-1 font-light">
-                        <Eye size={10} className="text-[#D4AF37]" /> View
+                      <p className="text-[8px] sm:text-[9px] text-gray-300 flex items-center gap-0.5 font-light">
+                        <Eye size={9} className="text-[#D4AF37]" /> View
                       </p>
                     </div>
 
-                    <div className="h-7 w-7 shrink-0 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-black/50 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#D4AF37] group-hover:text-black transition-all">
-                      <Maximize2 size={12} />
+                    <div className="h-6 w-6 sm:h-7 sm:w-7 shrink-0 rounded-full border border-[#D4AF37] text-[#D4AF37] bg-black/60 backdrop-blur-sm flex items-center justify-center group-hover:bg-[#D4AF37] group-hover:text-black transition-all">
+                      <Maximize2 size={10} />
                     </div>
                   </div>
                 </div>
@@ -227,19 +222,19 @@ export default function Portfolio() {
 
         {/* PAGINATION CONTROLS */}
         {totalPages > 1 && (
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-2">
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               {/* Previous Button */}
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`h-10 w-10 rounded-full border flex items-center justify-center transition-all ${
+                className={`h-8 w-8 sm:h-10 sm:w-10 rounded-full border flex items-center justify-center transition-all ${
                   currentPage === 1
                     ? "border-white/10 text-gray-600 cursor-not-allowed"
                     : "border-[#D4AF37]/50 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
                 }`}
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={16} />
               </button>
 
               {/* Page Numbers */}
@@ -247,7 +242,7 @@ export default function Portfolio() {
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`h-10 w-10 rounded-full text-xs font-semibold tracking-wider transition-all ${
+                  className={`h-8 w-8 sm:h-10 sm:w-10 rounded-full text-[11px] sm:text-xs font-semibold tracking-wider transition-all ${
                     currentPage === page
                       ? "bg-[#D4AF37] text-black shadow-[0_0_15px_rgba(212,175,55,0.4)]"
                       : "border border-white/10 text-gray-300 hover:border-[#D4AF37] hover:text-[#D4AF37]"
@@ -261,17 +256,17 @@ export default function Portfolio() {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`h-10 w-10 rounded-full border flex items-center justify-center transition-all ${
+                className={`h-8 w-8 sm:h-10 sm:w-10 rounded-full border flex items-center justify-center transition-all ${
                   currentPage === totalPages
                     ? "border-white/10 text-gray-600 cursor-not-allowed"
                     : "border-[#D4AF37]/50 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
                 }`}
               >
-                <ChevronRight size={18} />
+                <ChevronRight size={16} />
               </button>
             </div>
 
-            <span className="text-xs text-gray-400 font-light">
+            <span className="text-[11px] sm:text-xs text-gray-400 font-light">
               Showing {indexOfFirstItem + 1}–{Math.min(indexOfLastItem, filteredItems.length)} of {filteredItems.length} Looks
             </span>
           </div>
@@ -284,7 +279,7 @@ export default function Portfolio() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8"
+              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-8"
               onClick={() => setSelectedImage(null)}
             >
               <motion.div
@@ -297,12 +292,12 @@ export default function Portfolio() {
               >
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 z-20 h-10 w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
 
-                <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[60vh] md:max-h-[85vh] overflow-hidden">
+                <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[50vh] md:max-h-[85vh] overflow-hidden">
                   <img
                     src={selectedImage.image}
                     alt={selectedImage.title}
@@ -310,42 +305,42 @@ export default function Portfolio() {
                   />
                 </div>
 
-                <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
+                <div className="md:col-span-5 p-5 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
                   <div>
-                    <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
                       {selectedImage.category} LOOK
                     </span>
 
                     <h2
-                      className="text-2xl sm:text-3xl text-white font-medium mt-2 mb-4"
+                      className="text-xl sm:text-3xl text-white font-medium mt-1 sm:mt-2 mb-2 sm:mb-4"
                       style={{ fontFamily: "'Playfair Display', serif" }}
                     >
                       {selectedImage.title}
                     </h2>
 
-                    <div className="h-[1px] w-full bg-white/10 my-4" />
+                    <div className="h-[1px] w-full bg-white/10 my-2 sm:my-4" />
 
-                    <p className="text-gray-300 text-sm leading-relaxed font-light mb-6">
+                    <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light mb-4 sm:mb-6">
                       Customized high-definition bridal glam tailored for skin texture preservation, featuring long-lasting HD products and glowing airbrush finishes.
                     </p>
 
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3 text-xs text-gray-400">
-                        <Sparkles size={14} className="text-[#D4AF37]" /> HD Airbrush Finish
+                    <div className="space-y-2 sm:space-y-3">
+                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                        <Sparkles size={13} className="text-[#D4AF37]" /> HD Airbrush Finish
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-gray-400">
-                        <Sparkles size={14} className="text-[#D4AF37]" /> Premium International Brands
+                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                        <Sparkles size={13} className="text-[#D4AF37]" /> Premium International Brands
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
+                  <div className="mt-6 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
                     <button
                       onClick={(e) => toggleLike(e, selectedImage.id)}
-                      className="flex items-center gap-2 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
                     >
                       <Heart
-                        size={18}
+                        size={16}
                         className={likedItems[selectedImage.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
                       />
                       <span>
@@ -358,7 +353,7 @@ export default function Portfolio() {
 
                     <a
                       href="/contact"
-                      className="inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-[#D4AF37] text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
+                      className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
                     >
                       BOOK THIS LOOK
                     </a>
