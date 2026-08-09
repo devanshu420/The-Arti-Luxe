@@ -274,95 +274,97 @@ export default function Portfolio() {
 
         {/* LIGHTBOX MODAL */}
         <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-8"
-              onClick={() => setSelectedImage(null)}
+  {selectedImage && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 pt-16 sm:p-8"
+      onClick={() => setSelectedImage(null)}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative max-w-4xl w-full max-h-[85vh] sm:max-h-[90vh] bg-[#0a0a0a] border border-[#D4AF37]/30 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_50px_rgba(212,175,55,0.2)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Mobile View Fix: Top offset increased so button won't hide under Navbar */}
+        <button
+          onClick={() => setSelectedImage(null)}
+          className="absolute top-5 right-4 sm:top-4 sm:right-4 z-30 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors shadow-lg"
+          aria-label="Close modal"
+        >
+          <X size={18} />
+        </button>
+
+        <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[45vh] md:max-h-[85vh] overflow-hidden">
+          <img
+            src={selectedImage.image}
+            alt={selectedImage.title}
+            className="w-full h-full object-contain"
+          />
+        </div>
+
+        <div className="md:col-span-5 p-4 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
+          <div>
+            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
+              {selectedImage.category} LOOK
+            </span>
+
+            <h2
+              className="text-lg sm:text-3xl text-white font-medium mt-1 sm:mt-2 mb-2 sm:mb-4"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                className="relative max-w-4xl w-full max-h-[90vh] bg-[#0a0a0a] border border-[#D4AF37]/30 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_50px_rgba(212,175,55,0.2)]"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors"
-                >
-                  <X size={18} />
-                </button>
+              {selectedImage.title}
+            </h2>
 
-                <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[50vh] md:max-h-[85vh] overflow-hidden">
-                  <img
-                    src={selectedImage.image}
-                    alt={selectedImage.title}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
+            <div className="h-[1px] w-full bg-white/10 my-2 sm:my-4" />
 
-                <div className="md:col-span-5 p-5 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
-                  <div>
-                    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
-                      {selectedImage.category} LOOK
-                    </span>
+            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light mb-3 sm:mb-6">
+              Customized high-definition bridal glam tailored for skin texture preservation, featuring long-lasting HD products and glowing airbrush finishes.
+            </p>
 
-                    <h2
-                      className="text-xl sm:text-3xl text-white font-medium mt-1 sm:mt-2 mb-2 sm:mb-4"
-                      style={{ fontFamily: "'Playfair Display', serif" }}
-                    >
-                      {selectedImage.title}
-                    </h2>
+            <div className="space-y-1.5 sm:space-y-3">
+              <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                <Sparkles size={13} className="text-[#D4AF37]" /> HD Airbrush Finish
+              </div>
+              <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                <Sparkles size={13} className="text-[#D4AF37]" /> Premium International Brands
+              </div>
+            </div>
+          </div>
 
-                    <div className="h-[1px] w-full bg-white/10 my-2 sm:my-4" />
+          <div className="mt-4 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
+            <button
+              onClick={(e) => toggleLike(e, selectedImage.id)}
+              className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
+            >
+              <Heart
+                size={16}
+                className={likedItems[selectedImage.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
+              />
+              <span>
+                {likedItems[selectedImage.id]
+                  ? selectedImage.likes + 1
+                  : selectedImage.likes}{" "}
+                Likes
+              </span>
+            </button>
 
-                    <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light mb-4 sm:mb-6">
-                      Customized high-definition bridal glam tailored for skin texture preservation, featuring long-lasting HD products and glowing airbrush finishes.
-                    </p>
-
-                    <div className="space-y-2 sm:space-y-3">
-                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
-                        <Sparkles size={13} className="text-[#D4AF37]" /> HD Airbrush Finish
-                      </div>
-                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
-                        <Sparkles size={13} className="text-[#D4AF37]" /> Premium International Brands
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
-                    <button
-                      onClick={(e) => toggleLike(e, selectedImage.id)}
-                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
-                    >
-                      <Heart
-                        size={16}
-                        className={likedItems[selectedImage.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
-                      />
-                      <span>
-                        {likedItems[selectedImage.id]
-                          ? selectedImage.likes + 1
-                          : selectedImage.likes}{" "}
-                        Likes
-                      </span>
-                    </button>
-
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
-                    >
-                      BOOK THIS LOOK
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
+            >
+              BOOK THIS LOOK
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
       </div>
     </main>
   );
