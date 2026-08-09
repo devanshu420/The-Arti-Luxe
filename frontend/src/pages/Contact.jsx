@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Clock, Sparkles, Send, MessageCircle } from "lucid
 import axios from "axios";
 
 // API Base URL fallback
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://www.theartiluxe.co.in";
 
 export default function Contact() {
   useEffect(() => {
