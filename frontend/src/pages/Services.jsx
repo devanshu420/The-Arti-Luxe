@@ -7,171 +7,174 @@ import {
   Brush,
   Shirt,
   Ghost,
-  Layers,
   ArrowRight,
   X,
   Images,
   Maximize2,
   CheckCircle2,
+  Sparkle,
 } from "lucide-react";
 import OptimizedImage from "../components/OptimizedImage";
 import { getOptimizedImageUrl } from "../utils/Imagekit";
+
+// Unique categories array
+const categories = ["BRIDAL", "RECEPTION", "PARTY", "HAIR DO", "HALLOWEEN", "EDITORIAL"];
 
 // Central Portfolio Source Data
 const portfolioDatabase = [
   {
     id: 1,
-    title: "Editorial Soft Glam Portrait",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg"
+    title: "Couture Bridal Beauty Portrait",
+    category: "BRIDAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg",
   },
   {
     id: 2,
-    title: "Smokey Eye Reception Glam",
+    title: "Soft Glam Look",
     category: "RECEPTION",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg"
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg",
   },
   {
     id: 3,
-    title: "Velvet Matte Luxe Glam",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg"
+    title: "Stitched FX Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg",
   },
   {
     id: 4,
-    title: "Soft Rose Engagement Beauty",
-    category: "ENGAGEMENT",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg"
+    title: "Soft Watermelon Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg",
   },
   {
     id: 5,
-    title: "Traditional South Indian Silk Bridal",
-    category: "BRIDAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg"
+    title: "Creative Look on Face",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg",
   },
   {
     id: 6,
     title: "Glitter Cut-Crease Reception Look",
     category: "RECEPTION",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.09fff.jpeg"
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.09fff.jpeg",
   },
   {
     id: 7,
     title: "Pastel Pink Mehendi Glam",
-    category: "ENGAGEMENT",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pxvkvbvj%20.jpeg"
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pxvkvbvj%20.jpeg",
   },
   {
     id: 8,
-    title: "High Precision Winged Liner",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(1).jpeg"
+    title: "Neat Juda Hair Do",
+    category: "HAIR DO",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(1).jpeg",
   },
   {
     id: 9,
     title: "Royal Golden Reception Look",
     category: "RECEPTION",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(2).jpeg"
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(2).jpeg",
   },
   {
     id: 10,
-    title: "Champagne Glow Bridal",
-    category: "BRIDAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(4).jpeg"
+    title: "Soft Curl Hair Do",
+    category: "HAIR DO",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(4).jpeg",
   },
   {
     id: 11,
-    title: "Bold Berry Lip Editorial",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(5).jpeg"
+    title: "Heavy Braid Hair Do",
+    category: "HAIR DO",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(5).jpeg",
   },
   {
     id: 12,
-    title: "Heritage Rajasthani Bridal Elegance",
-    category: "BRIDAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(7).jpeg"
+    title: "Messy Soft Juda",
+    category: "HAIR DO",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(7).jpeg",
   },
   {
     id: 13,
-    title: "Shimmer Smokey Cocktail Glam",
-    category: "PARTY",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(6).jpeg"
+    title: "Radha Rani Glam Look",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(6).jpeg",
   },
   {
     id: 14,
-    title: "Fresh Dewy Engagement Glam",
-    category: "ENGAGEMENT",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg"
+    title: "Rajasthani Glam Look",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg",
   },
   {
     id: 15,
-    title: "High Gloss Runway Glam",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(3).jpeg"
+    title: "Bridal Juda Look",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(3).jpeg",
   },
   {
     id: 16,
-    title: "Soft Coral Sangeet Beauty",
+    title: "Cut Crease Eye Look",
     category: "PARTY",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg"
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg",
   },
   {
     id: 17,
-    title: "Gilded Gold Sunset Glam",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/kxbmv%20v.jpeg"
+    title: "Creative Avatar Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/kxbmv%20v.jpeg",
   },
   {
     id: 18,
-    title: "Classic Maroon Bridal Grace",
-    category: "BRIDAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/odhdk.jpeg"
+    title: "Soft Elegant Look",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/odhdk.jpeg",
   },
   {
     id: 19,
-    title: "Sultry Charcoal Eyes Reception",
-    category: "RECEPTION",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13%20(1).jpeg"
+    title: "Dual Colour Cut Crease Look",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13%20(1).jpeg",
   },
   {
     id: 20,
-    title: "Peach Blossom Party Makeup",
-    category: "PARTY",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mvbv.jpeg"
+    title: "Horror Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mvbv.jpeg",
   },
   {
     id: 21,
-    title: "Vintage Hollywood Red Lip",
-    category: "EDITORIAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.34.jpeg"
+    title: "Burn Horrible Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.34.jpeg",
   },
   {
     id: 22,
-    title: "Pastel Mint Engagement Look",
-    category: "ENGAGEMENT",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20atsff.jpeg"
+    title: "Gorgeous Party Look",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20atsff.jpeg",
   },
   {
     id: 23,
-    title: "Jewel Tone Cocktail Glam",
-    category: "PARTY",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/dkgbfg,jbjgf.jpeg"
+    title: "Soft Cloud Look",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/dkgbfg,jbjgf.jpeg",
   },
   {
     id: 24,
-    title: "Maharani Bridal Elegance",
-    category: "BRIDAL",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg"
+    title: "Dual Colour Cut Crease New One",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg",
   },
   {
     id: 25,
-    title: "Bronze Goddess Party Glam",
-    category: "PARTY",
-    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg"
-  }
+    title: "SFX & Gore Realistic Horror",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg",
+  },
 ];
 
-// Service definitions linked dynamically by matching categories
+// Updated Service Definitions matching updated categories
 const rawServices = [
   {
     id: "bridal",
@@ -183,45 +186,45 @@ const rawServices = [
     features: ["HD Airbrush Base", "Skin Texture Preservation", "Lashes & Hair Accessories"],
   },
   {
-    id: "hd-airbrush",
-    name: "HD & Airbrush Makeup",
+    id: "reception",
+    name: "Reception & Glam",
     category: "RECEPTION",
     icon: Brush,
     desc: "Ultra-lightweight, camera-ready coverage that looks seamless in high-definition photography, video, and 4K lighting.",
     features: ["Sweat-Resistant Formula", "Non-Caking Base", "Flawless Close-ups"],
   },
   {
-    id: "halloween",
-    name: "Halloween & SFX",
-    category: "EDITORIAL",
-    icon: Ghost,
-    tag: "SPECIALTY",
-    desc: "Transformative character, illusion, dark fantasy, and creative SFX makeup designed for themed parties and Halloween events.",
-    features: ["Prosthetics & Illusion", "Custom Color Paints", "All-Night Hold"],
-  },
-  {
-    id: "texture-glam",
-    name: "Texture & Dextore Glam",
-    category: "ENGAGEMENT",
-    icon: Layers,
-    desc: "Specialized high-definition skin texturing, glass-skin dewiness, and dimensional glam highlighting natural facial contours.",
-    features: ["Dimensional Highlighting", "Pore-Blurring Finish", "Dewy Glass Finish"],
+    id: "party",
+    name: "Party & Cocktail Glam",
+    category: "PARTY",
+    icon: Shirt,
+    desc: "Vibrant, elegant party looks customized for sangeet, cocktail nights, and special celebrations.",
+    features: ["Custom Lash Application", "Long-Wear Lip Formula", "Glowy Highlight"],
   },
   {
     id: "hairstyle",
     name: "Luxury Hair Styling",
-    category: "EDITORIAL",
+    category: "HAIR DO",
     icon: Scissors,
-    desc: "Hollywood waves, textured buns, braided crowns, and sleek styles tailored to complement your outfit and face structure.",
+    desc: "Hollywood waves, neat judas, textured braids, and sleek styles tailored to complement your outfit and face structure.",
     features: ["Hair Extensions Placement", "Thermal Styling", "Decorative Hair Accessories"],
   },
   {
-    id: "draping",
-    name: "Saree & Dupatta Draping",
-    category: "PARTY",
-    icon: Shirt,
-    desc: "Precision draping with graceful pleats, clean structural fitting, and comfortable pinning for sarees and bridal lehengas.",
-    features: ["Traditional & Modern Styles", "Can-Can Adjustments", "Secure All-Day Pinning"],
+    id: "halloween",
+    name: "Halloween & SFX",
+    category: "HALLOWEEN",
+    icon: Ghost,
+    tag: "SPECIALTY",
+    desc: "Transformative character, illusion, dark fantasy, and creative SFX makeup designed for themed events and Halloween.",
+    features: ["Prosthetics & Illusion", "Custom Color Paints", "All-Night Hold"],
+  },
+  {
+    id: "editorial",
+    name: "Editorial & Creative Glam",
+    category: "EDITORIAL",
+    icon: Sparkle,
+    desc: "High-fashion, sharp cut-creases, and concept-driven editorial makeup for photoshoots, concepts, and runway looks.",
+    features: ["Dimensional Highlighting", "Sharp Precision Lines", "Dewy & Glass Finish"],
   },
 ];
 
@@ -242,7 +245,7 @@ export default function Services() {
 
       return {
         ...service,
-        images: matchedImages.length > 0 ? matchedImages : portfolioDatabase.slice(0, 4).map(i => i.image),
+        images: matchedImages.length > 0 ? matchedImages : portfolioDatabase.slice(0, 4).map((i) => i.image),
       };
     });
   }, []);
@@ -272,8 +275,8 @@ export default function Services() {
 
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-[-150px] top-10 h-[500px] w-[500px] rounded-full bg-[#D4AF37]/10 blur-[180px]" />
-        <div className="absolute right-[-150px] top-1/3 h-[600px] w-[600px] rounded-full bg-[#D4AF37]/10 blur-[200px]" />
+        <div className="absolute -left-37.5 top-10 h-125 w-125 rounded-full bg-[#D4AF37]/10 blur-[180px]" />
+        <div className="absolute right-[-150px] top-1/3 h-[600px] w-150 rounded-full bg-[#D4AF37]/10 blur-[200px]" />
       </div>
 
       <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
@@ -299,8 +302,8 @@ export default function Services() {
             </p>
           </motion.div>
 
-          {/* Service Cards Grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto">
+          {/* Service Cards Grid - Upgraded UI */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto">
             {services.map((service) => {
               const Icon = service.icon;
 
@@ -308,36 +311,39 @@ export default function Services() {
                 <motion.div
                   key={service.id}
                   variants={fadeUp}
-                  whileHover={{ y: -6 }}
+                  whileHover={{ y: -8 }}
                   onClick={() => handleOpenGallery(service)}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0a] p-5 sm:p-7 cursor-pointer backdrop-blur-md transition-all duration-300 hover:border-[#D4AF37] hover:shadow-[0_0_35px_rgba(212,175,55,0.2)]"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-black p-6 sm:p-7 cursor-pointer backdrop-blur-xl transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)]"
                 >
-                  {/* Thumbnail Preview Blur Background */}
-                  <div className="absolute right-0 top-0 w-32 h-32 sm:w-36 sm:h-36 opacity-20 pointer-events-none overflow-hidden rounded-bl-full">
+                  {/* Subtle Top Gold Gradient Flare */}
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent group-hover:via-[#D4AF37] transition-all duration-500" />
+
+                  {/* Thumbnail Preview Blur Corner Effect */}
+                  <div className="absolute right-0 top-0 w-36 h-36 opacity-25 pointer-events-none overflow-hidden rounded-bl-full border-l border-b border-[#D4AF37]/20 transition-all duration-500 group-hover:scale-110 group-hover:opacity-40">
                     <OptimizedImage
                       src={service.images[0]}
                       alt={service.name}
                       width={200}
                       quality={60}
-                      className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
                     />
                   </div>
 
-                  <div>
+                  <div className="relative z-10">
                     {/* Header Row */}
                     <div className="flex items-center justify-between">
-                      <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-[#D4AF37] bg-black/80 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black transition-all duration-300">
-                        <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.5} />
+                      <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl border border-[#D4AF37]/40 bg-black/80 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black group-hover:shadow-[0_0_20px_rgba(212,175,55,0.5)] transition-all duration-300">
+                        <Icon className="h-6 w-6" strokeWidth={1.5} />
                       </div>
 
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 border border-white/10 text-[9px] sm:text-[10px] text-gray-300">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/10 text-[10px] text-gray-300 font-medium backdrop-blur-md">
                           <Images size={11} className="text-[#D4AF37]" />
-                          {service.images.length} Portfolio Photos
+                          {service.images.length} Photos
                         </span>
 
                         {service.tag && (
-                          <span className="rounded-full bg-[#D4AF37] px-2 sm:px-2.5 py-1 text-[8px] sm:text-[9px] font-bold tracking-widest text-black uppercase">
+                          <span className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] px-2.5 py-1 text-[8px] sm:text-[9px] font-bold tracking-wider text-black uppercase shadow-sm">
                             {service.tag}
                           </span>
                         )}
@@ -345,23 +351,23 @@ export default function Services() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif-custom mt-5 sm:mt-6 text-xl sm:text-2xl font-medium text-white tracking-wide group-hover:text-[#D4AF37] transition-colors">
+                    <h3 className="font-serif-custom mt-6 text-xl sm:text-2xl font-medium text-white tracking-wide group-hover:text-[#D4AF37] transition-colors duration-300">
                       {service.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-2 sm:mt-3 text-xs leading-relaxed text-gray-300 font-light">
+                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-gray-400 font-light group-hover:text-gray-300 transition-colors">
                       {service.desc}
                     </p>
 
                     {/* Feature Badges */}
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <div className="mt-5 flex flex-wrap gap-1.5">
                       {service.features.map((feat, i) => (
                         <span
                           key={i}
-                          className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded bg-white/5 text-gray-300 border border-white/5"
+                          className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-lg bg-white/5 text-gray-300 border border-white/5 group-hover:border-[#D4AF37]/20 group-hover:bg-black/40 transition-colors"
                         >
-                          <CheckCircle2 size={10} className="text-[#D4AF37]" />
+                          <CheckCircle2 size={11} className="text-[#D4AF37]" />
                           {feat}
                         </span>
                       ))}
@@ -369,13 +375,13 @@ export default function Services() {
                   </div>
 
                   {/* Bottom Bar */}
-                  <div className="mt-6 sm:mt-8 pt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase group-hover:translate-x-1 transition-transform">
-                      VIEW LOOKBOOK <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                  <div className="relative z-10 mt-7 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase group-hover:translate-x-1.5 transition-transform duration-300">
+                      VIEW LOOKBOOK <ArrowRight className="h-3.5 w-3.5" />
                     </span>
 
-                    <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black transition-colors">
-                      <Maximize2 size={12} />
+                    <div className="h-8 w-8 rounded-full border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black transition-all duration-300">
+                      <Maximize2 size={13} />
                     </div>
                   </div>
                 </motion.div>

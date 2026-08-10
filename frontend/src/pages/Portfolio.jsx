@@ -8,35 +8,35 @@ import { getOptimizedImageUrl } from "../utils/Imagekit";
 const portfolioItems = [
   {
     id: 1,
-    title: "Editorial Soft Glam Portrait",
+    title: "Couture Bridal Beauty Portrait",
     category: "BRIDAL",
     image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg",
     likes: 189
   },
   {
     id: 2,
-    title: "Smokey Eye Reception Glam",
+    title: "Soft Glam Look",
     category: "RECEPTION",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg",
     likes: 167
   },
   {
     id: 3,
-    title: "Velvet Matte Luxe Glam",
+    title: "Stitched FX Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg",
     likes: 178
   },
   {
     id: 4,
-    title: "Soft Rose Engagement Beauty",
+    title: "Soft Watermelon Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg",
     likes: 230
   },
   {
     id: 5,
-    title: "Traditional South Indian Silk Bridal",
+    title: "Creative Look on Face",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg",
     likes: 289
@@ -57,8 +57,8 @@ const portfolioItems = [
   },
   {
     id: 8,
-    title: "High Precision Winged Liner",
-    category: "EDITORIAL",
+    title: "Neat Juda Hair Do",
+    category: "HAIR DO",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(1).jpeg",
     likes: 199
   },
@@ -71,112 +71,112 @@ const portfolioItems = [
   },
   {
     id: 10,
-    title: "Champagne Glow Bridal",
-    category: "EDITORIAL",
+    title: "Soft Curl Hair Do",
+    category: "HAIR DO",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(4).jpeg",
     likes: 221
   },
   {
     id: 11,
-    title: "Bold Berry Lip Editorial",
-    category: "EDITORIAL",
+    title: "Heavy Braid Hair Do",
+    category: "HAIR DO",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(5).jpeg",
     likes: 175
   },
   {
     id: 12,
-    title: "Heritage Rajasthani Bridal Elegance",
-    category: "EDITORIAL",
+    title: "Messy Soft Juda",
+    category: "HAIR DO",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(7).jpeg",
     likes: 340
   },
   {
     id: 13,
-    title: "Shimmer Smokey Cocktail Glam",
-    category: "PARTY",
+    title: "Radha Rani Glam Look",
+    category: "EDITORIAL",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(6).jpeg",
     likes: 162
   },
   {
     id: 14,
-    title: "Fresh Dewy Engagement Glam",
-    category: "ENGAGEMENT",
+    title: "Rajasthani Glam Look",
+    category: "EDITORIAL",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg",
     likes: 208
   },
   {
     id: 15,
-    title: "High Gloss Runway Glam",
-    category: "EDITORIAL",
+    title: "Bridal Juda Look",
+    category: "RECEPTION",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(3).jpeg",
     likes: 195
   },
   {
     id: 16,
-    title: "Soft Coral Sangeet Beauty",
+    title: "Cut Crease Eye Look",
     category: "PARTY",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg",
     likes: 187
   },
   {
     id: 17,
-    title: "Gilded Gold Sunset Glam",
+    title: "Creative Avatar Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/kxbmv%20v.jpeg",
     likes: 213
   },
   {
     id: 18,
-    title: "Classic Maroon Bridal Grace",
-    category: "BRIDAL",
+    title: "Soft Elegant Look",
+    category: "RECEPTION",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/odhdk.jpeg",
     likes: 322
   },
   {
     id: 19,
-    title: "Sultry Charcoal Eyes Reception",
-    category: "RECEPTION",
+    title: "Dual Colour Cut Crease Look",
+    category: "EDITORIAL",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13%20(1).jpeg",
     likes: 179
   },
   {
     id: 20,
-    title: "Peach Blossom Party Makeup",
+    title: "Horror Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mvbv.jpeg",
     likes: 145
   },
   {
     id: 21,
-    title: "Vintage Hollywood Red Lip",
+    title: "Burn Horrible Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.34.jpeg",
     likes: 231
   },
   {
     id: 22,
-    title: "Pastel Mint Engagement Look",
-    category: "ENGAGEMENT",
+    title: "Gorgeous Party Look",
+    category: "RECEPTION",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20atsff.jpeg",
     likes: 188
   },
   {
     id: 23,
-    title: "Jewel Tone Cocktail Glam",
+    title: "Soft Cloud Look",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/dkgbfg,jbjgf.jpeg",
     likes: 172
   },
   {
     id: 24,
-    title: "Maharani Bridal Elegance",
-    category: "BRIDAL",
+    title: "Dual Colour Cut Crease New One",
+    category: "EDITORIAL",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg",
     likes: 350
   },
   {
     id: 25,
-    title: "Bronze Goddess Party Glam",
+    title: "SFX & Gore Realistic Horror",
     category: "HALLOWEEN",
     image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg",
     likes: 191
@@ -184,7 +184,7 @@ const portfolioItems = [
 ];
 
 // Normalized uppercase categories array
-const categories = ["ALL", "BRIDAL", "ENGAGEMENT", "RECEPTION", "PARTY", "HALLOWEEN", "EDITORIAL"];
+const categories = ["ALL", "BRIDAL", "RECEPTION", "PARTY", "HAIR DO", "HALLOWEEN", "EDITORIAL"];
 const ITEMS_PER_PAGE = 15;
 
 export default function Portfolio() {
@@ -229,7 +229,7 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen pt-24 sm:pt-28 pb-16 bg-[#050505] text-white font-sans relative overflow-hidden">
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#D4AF37]/10 blur-[180px] pointer-events-none" />
+      <div className="absolute top-20 left-1/2 -translate-x-1/2 w-200 h-87.5 bg-[#D4AF37]/10 blur-[180px] pointer-events-none" />
 
       <div className="w-full px-2.5 sm:px-6 lg:px-8 relative z-10">
         <motion.div
@@ -239,11 +239,11 @@ export default function Portfolio() {
           className="text-center max-w-3xl mx-auto mb-6 sm:mb-8"
         >
           <div className="flex items-center justify-center gap-3 mb-2">
-            <div className="h-[1px] w-8 sm:w-10 bg-[#D4AF37]" />
+            <div className="h-px w-8 sm:w-10 bg-[#D4AF37]" />
             <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] sm:tracking-[0.3em] text-[#D4AF37] font-semibold">
               CURATED ARTISTRY
             </span>
-            <div className="h-[1px] w-8 sm:w-10 bg-[#D4AF37]" />
+            <div className="h-px w-8 sm:w-10 bg-[#D4AF37]" />
           </div>
 
           <h1
@@ -297,7 +297,7 @@ export default function Portfolio() {
                 className="relative group rounded-xl overflow-hidden cursor-pointer border border-white/10 bg-[#0a0a0a] hover:border-[#D4AF37]/60 transition-all duration-300 shadow-md flex flex-col"
                 onClick={() => setSelectedImage(item)}
               >
-                <div className="w-full aspect-[3/4] relative overflow-hidden bg-zinc-900 flex items-center justify-center">
+                <div className="w-full aspect-3/4 relative overflow-hidden bg-zinc-900 flex items-center justify-center">
                   <OptimizedImage
                     src={item.image}
                     alt={`${item.title} - HD Bridal & Makeup Artist in Kapashera, Delhi`}
@@ -310,7 +310,7 @@ export default function Portfolio() {
                   />
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2 sm:p-3 flex flex-col justify-between pointer-events-none">
+                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/25 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2 sm:p-3 flex flex-col justify-between pointer-events-none">
                   <div className="flex items-center justify-between pointer-events-auto">
                     <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] uppercase tracking-wider bg-[#D4AF37] text-black font-bold shadow-sm">
                       {item.category}
