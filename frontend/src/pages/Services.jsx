@@ -15,7 +15,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import OptimizedImage from "../components/OptimizedImage";
-import { getOptimizedImageUrl } from "../utils/imageKit";
+import { getOptimizedImageUrl } from "../utils/Imagekit";
 
 // Central Portfolio Source Data
 const portfolioDatabase = [
