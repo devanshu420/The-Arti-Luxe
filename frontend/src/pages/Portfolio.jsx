@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Maximize2, Heart, Sparkles, Eye, ChevronLeft, ChevronRight } from "lucide-react";
 import OptimizedImage from "../components/OptimizedImage";
-import { getOptimizedImageUrl } from "../utils/imageKit";
+import { getOptimizedImageUrl } from "../utils/Imagekit";
 
 // Cleaned, Re-indexed & Focused Portfolio Items (IDs 1 to 25)
 const portfolioItems = [

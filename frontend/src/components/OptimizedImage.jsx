@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getOptimizedImageUrl, generateSrcSet } from "../utils/imageKit";
+import { getOptimizedImageUrl, generateSrcSet } from "../utils/Imagekit";
 
 /**
  * Reusable Optimized Image Component
