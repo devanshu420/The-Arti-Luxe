@@ -9,6 +9,7 @@ import {
   Clock,
   ArrowUpRight,
 } from "lucide-react";
+import OptimizedImage from "../OptimizedImage";
 
 function PinterestIcon({ className = "" }) {
   return (
@@ -90,14 +91,35 @@ export default function Footer() {
           
           {/* Brand Info Column (Full width on mobile) */}
           <div className="col-span-2 xl:col-span-1 border-b border-white/10 pb-4 xl:border-none xl:pb-0">
-            <Link to="/" className="inline-flex items-center gap-2.5 shrink-0">
-              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md bg-[#D4AF37] shadow-[0_0_18px_rgba(212,175,55,0.4)]">
-                <span className="text-black text-sm sm:text-lg font-bold">𝓐𝓢</span>
-              </div>
-              <span className="font-serif-custom text-base sm:text-xl font-bold tracking-widest text-[#D4AF37] uppercase">
-                𝖳𝖧𝖤 ARTI 𝖫𝖴𝖷𝖤
-              </span>
-            </Link>
+            <motion.div>
+              <Link to="/" className="inline-flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+                {/* Optimized Footer Logo Image */}
+                <OptimizedImage
+                  src="https://ik.imagekit.io/asdf5690/Makeup/Logo.png"
+                  alt="The Arti Luxe Official Logo"
+                  width={120}
+                  height={120}
+                  quality={85}
+                  responsiveWidths={[80, 120, 160]}
+                  sizes="(max-width: 640px) 40px, 60px"
+                  objectFit="contain"
+                  className="h-10 w-auto sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_12px_rgba(212,175,55,0.3)]"
+                />
+
+                {/* Brand Text Header */}
+                <div className="flex flex-col">
+                  <span 
+                    className="font-serif text-base sm:text-xl font-bold text-[#D4AF37] tracking-[0.2em] uppercase leading-tight group-hover:text-amber-300 transition-colors"
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    THE ARTI LUXÉ
+                  </span>
+                  <span className="text-[9px] sm:text-[10px] text-gray-400 tracking-[0.25em] uppercase font-light">
+                    Beauty Studio & Academy
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
 
             <p className="mt-2.5 max-w-sm text-[11px] sm:text-sm leading-relaxed text-gray-300 font-light">
               Arti Makeup Artist offers premium bridal artistry, luxury event

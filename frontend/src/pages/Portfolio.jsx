@@ -1,53 +1,190 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Maximize2, Heart, Sparkles, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import OptimizedImage from "../components/OptimizedImage";
+import { getOptimizedImageUrl } from "../utils/imageKit";
 
-// 50 Makeup & Bridal Portfolio Images
+// Cleaned, Re-indexed & Focused Portfolio Items (IDs 1 to 25)
 const portfolioItems = [
-  { id: 1, title: "Royal North Indian Bridal", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/watermarked_img_7148972934840787390.png", aspect: "aspect-[3/4]", likes: 245 },
-  { id: 2, title: "Editorial Soft Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg", aspect: "aspect-[4/5]", likes: 189 },
-  { id: 3, title: "Traditional Kundan Look", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gemini_Generated_Image_t56mkqt56mkqt56m.png", aspect: "aspect-[2/3]", likes: 315 },
-  { id: 4, title: "Smokey Eye Reception Glam", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg", aspect: "aspect-[3/4]", likes: 167 },
-  { id: 5, title: "Minimal Glow Cocktail", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg", aspect: "aspect-[4/5]", likes: 198 },
-  { id: 6, title: "Classic Red Lip Engagement", category: "Engagement", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[2/3]", likes: 142 },
-  { id: 7, title: "High Fashion Metallic Gloss", category: "Editorial", image: "https://images.unsplash.com/photo-1500840218059-8f69f5d60c2e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 204 },
-  { id: 8, title: "Golden Hour Sangeet Glow", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pfkl%20mvnmbljl.jpeg", aspect: "aspect-[4/5]", likes: 211 },
-  { id: 9, title: "Velvet Matte Luxe Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg", aspect: "aspect-[3/4]", likes: 178 },
-  { id: 10, title: "Soft Rose Engagement", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg", aspect: "aspect-[2/3]", likes: 230 },
-  { id: 11, title: "Traditional South Indian Silk", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg", aspect: "aspect-[4/5]", likes: 289 },
-  { id: 12, title: "Glass Skin Dewy Finish", category: "Party", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 156 },
-  { id: 13, title: "Classic Bronze Eyes", category: "Reception", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[2/3]", likes: 194 },
-  { id: 14, title: "Boho Chic Hair & Makeup", category: "Editorial", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[4/5]", likes: 310 },
-  { id: 15, title: "Deep Crimson Bridal Glam", category: "Bridal", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[3/4]", likes: 276 },
-  { id: 16, title: "Subtle Nude Glam", category: "Party", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop", aspect: "aspect-[2/3]", likes: 182 },
-  { id: 17, title: "Glitter Cut-Crease Eyes", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.09fff.jpeg", aspect: "aspect-[4/5]", likes: 228 },
-  { id: 18, title: "Pastel Pink Mehendi Glam", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pxvkvbvj%20.jpeg", aspect: "aspect-[3/4]", likes: 164 },
-  { id: 19, title: "High Precision Winged Liner", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(1).jpeg", aspect: "aspect-[2/3]", likes: 199 },
-  { id: 20, title: "Royal Golden Reception Look", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(2).jpeg", aspect: "aspect-[4/5]", likes: 253 },
-  { id: 21, title: "Champagne Glow Bridal", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(4).jpeg", aspect: "aspect-[3/4]", likes: 221 },
-  { id: 22, title: "Bold Berry Lip Editorial", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(5).jpeg", aspect: "aspect-[4/5]", likes: 175 },
-  { id: 23, title: "Heritage Rajasthani Bridal", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(7).jpeg", aspect: "aspect-[2/3]", likes: 340 },
-  { id: 24, title: "Shimmer Smokey Cocktail", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(6).jpeg", aspect: "aspect-[3/4]", likes: 162 },
-  { id: 25, title: "Fresh Dewy Engagement Look", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg", aspect: "aspect-[4/5]", likes: 208 },
-  { id: 26, title: "High Gloss Runway Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(3).jpeg", aspect: "aspect-[2/3]", likes: 195 },
-  { id: 27, title: "Soft Coral Sangeet Beauty", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg", aspect: "aspect-[3/4]", likes: 187 },
-  { id: 28, title: "Ethereal Reception Queen", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg", aspect: "aspect-[4/5]", likes: 264 },
-  { id: 29, title: "Modern Minimalist Bride", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg", aspect: "aspect-[2/3]", likes: 298 },
-  { id: 30, title: "Gilded Gold Sunset Glam", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/kxbmv%20v.jpeg", aspect: "aspect-[3/4]", likes: 213 },
-  { id: 31, title: "Classic Maroon Bridal Grace", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/odhdk.jpeg", aspect: "aspect-[4/5]", likes: 322 },
-  { id: 32, title: "Sultry Charcoal Eyes", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13%20(1).jpeg", aspect: "aspect-[2/3]", likes: 179 },
-  { id: 33, title: "Peach Blossom Party Makeup", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mvbv.jpeg", aspect: "aspect-[3/4]", likes: 145 },
-  { id: 34, title: "Vintage Hollywood Red Lip", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.34.jpeg", aspect: "aspect-[4/5]", likes: 231 },
-  { id: 35, title: "Pastel Mint Engagement Look", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20atsff.jpeg", aspect: "aspect-[2/3]", likes: 188 },
-  { id: 36, title: "Jewel Tone Cocktail Glam", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/dkgbfg,jbjgf.jpeg", aspect: "aspect-[3/4]", likes: 172 },
-  { id: 37, title: "Maharani Bridal Elegance", category: "Bridal", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg", aspect: "aspect-[4/5]", likes: 350 },
-  { id: 38, title: "Satin Nude Editorial", category: "Editorial", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/ffff.jpeg", aspect: "aspect-[2/3]", likes: 201 },
-  { id: 39, title: "Golden Bronze Reception", category: "Reception", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg", aspect: "aspect-[3/4]", likes: 219 },
-  { id: 40, title: "Soft Peach Mehendi Look", category: "Engagement", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/hdjf.jpeg", aspect: "aspect-[4/5]", likes: 165 },
-  { id: 41, title: "Bronze Goddess Party Glam", category: "Party", image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg", aspect: "aspect-[2/3]", likes: 191 },
+  {
+    id: 1,
+    title: "Editorial Soft Glam Portrait",
+    category: "BRIDAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/gurpreet-singh-Po-nggQqplE-unsplash.jpg",
+    likes: 189
+  },
+  {
+    id: 2,
+    title: "Smokey Eye Reception Glam",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pvknvjvhojh.jpeg",
+    likes: 167
+  },
+  {
+    id: 3,
+    title: "Velvet Matte Luxe Glam",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.33.jpeg",
+    likes: 178
+  },
+  {
+    id: 4,
+    title: "Soft Rose Engagement Beauty",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/slkjkj,jkhfk.jpeg",
+    likes: 230
+  },
+  {
+    id: 5,
+    title: "Traditional South Indian Silk Bridal",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.08.jpeg",
+    likes: 289
+  },
+  {
+    id: 6,
+    title: "Glitter Cut-Crease Reception Look",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.01.09fff.jpeg",
+    likes: 228
+  },
+  {
+    id: 7,
+    title: "Pastel Pink Mehendi Glam",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/pxvkvbvj%20.jpeg",
+    likes: 164
+  },
+  {
+    id: 8,
+    title: "High Precision Winged Liner",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(1).jpeg",
+    likes: 199
+  },
+  {
+    id: 9,
+    title: "Royal Golden Reception Look",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(2).jpeg",
+    likes: 253
+  },
+  {
+    id: 10,
+    title: "Champagne Glow Bridal",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(4).jpeg",
+    likes: 221
+  },
+  {
+    id: 11,
+    title: "Bold Berry Lip Editorial",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(5).jpeg",
+    likes: 175
+  },
+  {
+    id: 12,
+    title: "Heritage Rajasthani Bridal Elegance",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(7).jpeg",
+    likes: 340
+  },
+  {
+    id: 13,
+    title: "Shimmer Smokey Cocktail Glam",
+    category: "PARTY",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(6).jpeg",
+    likes: 162
+  },
+  {
+    id: 14,
+    title: "Fresh Dewy Engagement Glam",
+    category: "ENGAGEMENT",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/bmxv.jpeg",
+    likes: 208
+  },
+  {
+    id: 15,
+    title: "High Gloss Runway Glam",
+    category: "EDITORIAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(3).jpeg",
+    likes: 195
+  },
+  {
+    id: 16,
+    title: "Soft Coral Sangeet Beauty",
+    category: "PARTY",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.23.50%20(9).jpeg",
+    likes: 187
+  },
+  {
+    id: 17,
+    title: "Gilded Gold Sunset Glam",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/kxbmv%20v.jpeg",
+    likes: 213
+  },
+  {
+    id: 18,
+    title: "Classic Maroon Bridal Grace",
+    category: "BRIDAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/odhdk.jpeg",
+    likes: 322
+  },
+  {
+    id: 19,
+    title: "Sultry Charcoal Eyes Reception",
+    category: "RECEPTION",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13%20(1).jpeg",
+    likes: 179
+  },
+  {
+    id: 20,
+    title: "Peach Blossom Party Makeup",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mvbv.jpeg",
+    likes: 145
+  },
+  {
+    id: 21,
+    title: "Vintage Hollywood Red Lip",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.10.34.jpeg",
+    likes: 231
+  },
+  {
+    id: 22,
+    title: "Pastel Mint Engagement Look",
+    category: "ENGAGEMENT",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20atsff.jpeg",
+    likes: 188
+  },
+  {
+    id: 23,
+    title: "Jewel Tone Cocktail Glam",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/dkgbfg,jbjgf.jpeg",
+    likes: 172
+  },
+  {
+    id: 24,
+    title: "Maharani Bridal Elegance",
+    category: "BRIDAL",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/WhatsApp%20Image%202026-08-06%20at%2018.25.13.jpeg",
+    likes: 350
+  },
+  {
+    id: 25,
+    title: "Bronze Goddess Party Glam",
+    category: "HALLOWEEN",
+    image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/New%20Gallery/mnxbmcbm.jpeg",
+    likes: 191
+  }
 ];
 
-const categories = ["ALL", "BRIDAL", "ENGAGEMENT", "RECEPTION", "PARTY", "EDITORIAL"];
+// Normalized uppercase categories array
+const categories = ["ALL", "BRIDAL", "ENGAGEMENT", "RECEPTION", "PARTY", "HALLOWEEN", "EDITORIAL"];
 const ITEMS_PER_PAGE = 15;
 
 export default function Portfolio() {
@@ -60,15 +197,13 @@ export default function Portfolio() {
     document.title = "Portfolio Gallery - Luxé Beauty";
   }, []);
 
-  // Filter items
   const filteredItems =
     activeCategory === "ALL"
       ? portfolioItems
       : portfolioItems.filter(
-          (item) => item.category.toUpperCase() === activeCategory
+          (item) => item.category.toUpperCase() === activeCategory.toUpperCase()
         );
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
@@ -76,7 +211,7 @@ export default function Portfolio() {
 
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat);
-    setCurrentPage(1); // Reset to page 1 on filter change
+    setCurrentPage(1);
   };
 
   const handlePageChange = (page) => {
@@ -94,13 +229,9 @@ export default function Portfolio() {
 
   return (
     <main className="min-h-screen pt-24 sm:pt-28 pb-16 bg-[#050505] text-white font-sans relative overflow-hidden">
-      {/* Background Glow */}
       <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-[#D4AF37]/10 blur-[180px] pointer-events-none" />
 
-      {/* FULL WIDTH CONTAINER */}
       <div className="w-full px-2.5 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -127,7 +258,7 @@ export default function Portfolio() {
           </p>
         </motion.div>
 
-        {/* CATEGORIES */}
+        {/* CATEGORY FILTER */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -138,7 +269,7 @@ export default function Portfolio() {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`relative px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] transition-all duration-300 uppercase ${
+              className={`cursor-pointer relative px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] sm:tracking-[0.2em] transition-all duration-300 uppercase ${
                 activeCategory === cat
                   ? "text-black bg-[#D4AF37] shadow-[0_0_20px_rgba(212,175,55,0.4)]"
                   : "text-gray-300 border border-white/10 bg-black/40 hover:border-[#D4AF37]/60 hover:text-[#D4AF37]"
@@ -149,37 +280,37 @@ export default function Portfolio() {
           ))}
         </motion.div>
 
-        {/* PINTEREST MASONRY STAGGERED GRID (2 COLUMNS MOBILE, 5 COLUMNS DESKTOP) */}
+        {/* GRID LAYOUT WITH BALANCED CENTER FIT */}
         <motion.div
           layout
-          className="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-2.5 sm:gap-3 space-y-2.5 sm:space-y-3 min-h-[500px]"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 min-h-[500px]"
         >
           <AnimatePresence mode="wait">
             {currentItems.map((item) => (
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="break-inside-avoid relative group rounded-lg overflow-hidden cursor-pointer border border-white/10 bg-[#0a0a0a] hover:border-[#D4AF37]/60 transition-all duration-300 shadow-md"
+                className="relative group rounded-xl overflow-hidden cursor-pointer border border-white/10 bg-[#0a0a0a] hover:border-[#D4AF37]/60 transition-all duration-300 shadow-md flex flex-col"
                 onClick={() => setSelectedImage(item)}
               >
-                {/* Image Container with Dynamic Aspect Ratios */}
-                <div className={`w-full ${item.aspect} overflow-hidden bg-zinc-900`}>
-                  <img
+                <div className="w-full aspect-[3/4] relative overflow-hidden bg-zinc-900 flex items-center justify-center">
+                  <OptimizedImage
                     src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    loading="lazy"
+                    alt={`${item.title} - HD Bridal & Makeup Artist in Kapashera, Delhi`}
+                    width={500}
+                    height={667}
+                    quality={75}
+                    responsiveWidths={[300, 500, 700]}
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 </div>
 
-                {/* Overlay Container: Always Visible on Mobile, Hover Reveal on Desktop */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-2 sm:p-3 flex flex-col justify-between pointer-events-none">
-                  
-                  {/* Top Bar: Category Badge & Like Button */}
                   <div className="flex items-center justify-between pointer-events-auto">
                     <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] uppercase tracking-wider bg-[#D4AF37] text-black font-bold shadow-sm">
                       {item.category}
@@ -196,7 +327,6 @@ export default function Portfolio() {
                     </button>
                   </div>
 
-                  {/* Bottom Bar: Title & Maximize Button */}
                   <div className="flex items-end justify-between gap-1.5 pointer-events-auto">
                     <div className="overflow-hidden">
                       <h3
@@ -224,7 +354,6 @@ export default function Portfolio() {
         {totalPages > 1 && (
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <div className="flex items-center gap-1.5 sm:gap-2">
-              {/* Previous Button */}
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -237,7 +366,6 @@ export default function Portfolio() {
                 <ChevronLeft size={16} />
               </button>
 
-              {/* Page Numbers */}
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                 <button
                   key={page}
@@ -252,7 +380,6 @@ export default function Portfolio() {
                 </button>
               ))}
 
-              {/* Next Button */}
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
@@ -274,97 +401,97 @@ export default function Portfolio() {
 
         {/* LIGHTBOX MODAL */}
         <AnimatePresence>
-  {selectedImage && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 pt-16 sm:p-8"
-      onClick={() => setSelectedImage(null)}
-    >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative max-w-4xl w-full max-h-[85vh] sm:max-h-[90vh] bg-[#0a0a0a] border border-[#D4AF37]/30 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_50px_rgba(212,175,55,0.2)]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Mobile View Fix: Top offset increased so button won't hide under Navbar */}
-        <button
-          onClick={() => setSelectedImage(null)}
-          className="absolute top-5 right-4 sm:top-4 sm:right-4 z-30 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors shadow-lg"
-          aria-label="Close modal"
-        >
-          <X size={18} />
-        </button>
-
-        <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[45vh] md:max-h-[85vh] overflow-hidden">
-          <img
-            src={selectedImage.image}
-            alt={selectedImage.title}
-            className="w-full h-full object-contain"
-          />
-        </div>
-
-        <div className="md:col-span-5 p-4 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
-          <div>
-            <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
-              {selectedImage.category} LOOK
-            </span>
-
-            <h2
-              className="text-lg sm:text-3xl text-white font-medium mt-1 sm:mt-2 mb-2 sm:mb-4"
-              style={{ fontFamily: "'Playfair Display', serif" }}
+          {selectedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 pt-16 sm:p-8"
+              onClick={() => setSelectedImage(null)}
             >
-              {selectedImage.title}
-            </h2>
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative max-w-4xl w-full max-h-[85vh] sm:max-h-[90vh] bg-[#0a0a0a] border border-[#D4AF37]/30 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_50px_rgba(212,175,55,0.2)]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-5 right-4 sm:top-4 sm:right-4 z-30 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors shadow-lg"
+                  aria-label="Close modal"
+                >
+                  <X size={18} />
+                </button>
 
-            <div className="h-[1px] w-full bg-white/10 my-2 sm:my-4" />
+                <div className="md:col-span-7 bg-black flex items-center justify-center max-h-[45vh] md:max-h-[85vh] overflow-hidden">
+                  <img
+                    src={getOptimizedImageUrl(selectedImage.image, { width: 1200, quality: 85, format: "auto" })}
+                    alt={`${selectedImage.title} High Resolution`}
+                    className="w-full h-full object-contain"
+                    loading="eager"
+                  />
+                </div>
 
-            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light mb-3 sm:mb-6">
-              Customized high-definition bridal glam tailored for skin texture preservation, featuring long-lasting HD products and glowing airbrush finishes.
-            </p>
+                <div className="md:col-span-5 p-4 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10">
+                  <div>
+                    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
+                      {selectedImage.category} LOOK
+                    </span>
 
-            <div className="space-y-1.5 sm:space-y-3">
-              <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
-                <Sparkles size={13} className="text-[#D4AF37]" /> HD Airbrush Finish
-              </div>
-              <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
-                <Sparkles size={13} className="text-[#D4AF37]" /> Premium International Brands
-              </div>
-            </div>
-          </div>
+                    <h2
+                      className="text-lg sm:text-3xl text-white font-medium mt-1 sm:mt-2 mb-2 sm:mb-4"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
+                      {selectedImage.title}
+                    </h2>
 
-          <div className="mt-4 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
-            <button
-              onClick={(e) => toggleLike(e, selectedImage.id)}
-              className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
-            >
-              <Heart
-                size={16}
-                className={likedItems[selectedImage.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
-              />
-              <span>
-                {likedItems[selectedImage.id]
-                  ? selectedImage.likes + 1
-                  : selectedImage.likes}{" "}
-                Likes
-              </span>
-            </button>
+                    <div className="h-[1px] w-full bg-white/10 my-2 sm:my-4" />
 
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
-            >
-              BOOK THIS LOOK
-            </a>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+                    <p className="text-gray-300 text-xs sm:text-sm leading-relaxed font-light mb-3 sm:mb-6">
+                      Customized high-definition bridal glam tailored for skin texture preservation, featuring long-lasting HD products and glowing airbrush finishes.
+                    </p>
+
+                    <div className="space-y-1.5 sm:space-y-3">
+                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                        <Sparkles size={13} className="text-[#D4AF37]" /> HD Airbrush Finish
+                      </div>
+                      <div className="flex items-center gap-2 sm:gap-3 text-xs text-gray-400">
+                        <Sparkles size={13} className="text-[#D4AF37]" /> Premium International Brands
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-3 sm:pt-4 border-t border-white/10 flex items-center justify-between">
+                    <button
+                      onClick={(e) => toggleLike(e, selectedImage.id)}
+                      className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-[#D4AF37] transition-colors"
+                    >
+                      <Heart
+                        size={16}
+                        className={likedItems[selectedImage.id] ? "fill-[#D4AF37] text-[#D4AF37]" : ""}
+                      />
+                      <span>
+                        {likedItems[selectedImage.id]
+                          ? selectedImage.likes + 1
+                          : selectedImage.likes}{" "}
+                        Likes
+                      </span>
+                    </button>
+
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all"
+                    >
+                      BOOK THIS LOOK
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </main>
   );
