@@ -2,7 +2,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import {
   Instagram,
-  Facebook,
+  Youtube,
+  MessageCircle,
   MapPin,
   Phone,
   Mail,
@@ -127,37 +128,40 @@ export default function Footer() {
             </p>
 
             {/* Social Links */}
-            <div className="mt-3.5 flex items-center gap-2.5">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
-                aria-label="Instagram"
-              >
-                <Instagram size={14} className="transition-transform group-hover:scale-110" />
-              </a>
+          <div className="mt-3.5 flex items-center gap-2.5">
+  {/* Instagram - Official Gradient Hover Effect */}
+  <a
+    href="https://www.instagram.com/the_arti_luxe/?utm_source=ig_web_button_share_sheet"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all duration-300 hover:border-[#e1306c] hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:shadow-[0_0_15px_rgba(225,48,108,0.5)]"
+    aria-label="Instagram"
+  >
+    <Instagram size={14} className="transition-transform duration-300 group-hover:scale-110" />
+  </a>
 
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
-                aria-label="Facebook"
-              >
-                <Facebook size={14} className="transition-transform group-hover:scale-110" />
-              </a>
+  {/* YouTube - Official Red Hover Effect */}
+  <a
+    href="https://www.youtube.com/@arti_sharma2004"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all duration-300 hover:border-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:shadow-[0_0_15px_rgba(255,0,0,0.5)]"
+    aria-label="YouTube"
+  >
+    <Youtube size={14} className="transition-transform duration-300 group-hover:scale-110" />
+  </a>
 
-              <a
-                href="https://pinterest.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black"
-                aria-label="Pinterest"
-              >
-                <PinterestIcon className="h-3.5 w-3.5 sm:h-[15px] sm:w-[15px] transition-transform group-hover:scale-110" />
-              </a>
-            </div>
+  {/* WhatsApp - Official Green Hover Effect */}
+  <a
+    href="https://wa.me/918960507259"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border border-[#D4AF37]/30 bg-black/60 text-gray-300 transition-all duration-300 hover:border-[#25D366] hover:bg-[#25D366] hover:text-white hover:shadow-[0_0_15px_rgba(37,211,102,0.5)]"
+    aria-label="WhatsApp"
+  >
+    <MessageCircle className="h-3.5 w-3.5 sm:h-[15px] sm:w-[15px] transition-transform duration-300 group-hover:scale-110" />
+  </a>
+</div>
           </div>
 
           {/* Quick Links Column */}
