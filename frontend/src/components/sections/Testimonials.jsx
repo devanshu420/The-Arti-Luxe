@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Quote, Star } from "lucide-react";
+import OptimizedImage from "../OptimizedImage";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -12,13 +13,14 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      name: "Priya Singh",
-      service: "Bridal Makeup",
+      name: "Devanshu Sharma",
+      service: "Developer",
       rating: 5,
+      isHighlighted: true, // Special highlight flag for larger avatar & gold glow
       quote:
-        "Arti made me feel incredibly beautiful and confident on my wedding day. Her HD makeup lasted through the entire day and looked flawless in all photos!",
+        "The makeup work looks absolutely beautiful and professional. The bridal looks are elegant, well-finished, and beautifully done. Highly recommended for anyone looking for a premium makeup artist!",
       image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+        "https://ik.imagekit.io/asdf5690/Makeup/Devanshu%20bbbbbbb.jpeg?tr=w-200,h-200,fo-face,q-80,f-auto",
     },
     {
       id: 2,
@@ -28,7 +30,7 @@ export default function Testimonials() {
       quote:
         "The professionalism and attention to skin texture was incredible. I received endless compliments on my cocktail look. Highly recommended!",
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=200&h=200&fit=crop&crop=faces&q=80", // Indian Woman
     },
     {
       id: 3,
@@ -38,7 +40,7 @@ export default function Testimonials() {
       quote:
         "Working with Luxé Beauty Studio was an absolute dream. The makeup was creative, high-fashion, and perfectly suited for studio lights.",
       image:
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
+        "https://ik.imagekit.io/asdf5690/Makeup/Review/Screenshot%202026-08-13%20120101.png?tr=w-200,h-200,fo-face,q-80,f-auto", 
     },
     {
       id: 4,
@@ -48,7 +50,7 @@ export default function Testimonials() {
       quote:
         "Every single detail was executed with perfection. Arti understood my vision and created a royal bridal look that exceeded my expectations.",
       image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+        "https://ik.imagekit.io/asdf5690/Makeup/Review/Screenshot%202026-08-13%20120011.png?tr=w-200,h-200,fo-face,q-80,f-auto", // Indian Professional Woman
     },
     {
       id: 5,
@@ -58,7 +60,7 @@ export default function Testimonials() {
       quote:
         "I booked Luxé Beauty for my reception glam and could not be happier. Clean, hygienic brushes and a gorgeous long-lasting finish!",
       image:
-        "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=400&fit=crop",
+        "https://ik.imagekit.io/asdf5690/Makeup/Review/Screenshot%202026-08-13%20120032.png?tr=w-200,h-200,fo-face,q-80,f-auto", // Indian Woman Portrait
     },
   ];
 
@@ -223,16 +225,25 @@ export default function Testimonials() {
 
                   {/* Client Info Footer */}
                   <div className="relative mt-6 pt-4 border-t border-white/10 flex items-center gap-3">
-                    <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full border border-[#D4AF37] bg-black">
-                      <img
+                    <div
+                      className={`shrink-0 overflow-hidden rounded-full border bg-black transition-all ${
+                        testimonial.isHighlighted
+                          ? "w-14 h-14 sm:w-16 sm:h-16 border-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.6)] ring-2 ring-[#D4AF37]/40"
+                          : "w-11 h-11 border-[#D4AF37]/60"
+                      }`}
+                    >
+                      <OptimizedImage
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="h-full w-full object-cover"
+                        width={testimonial.isHighlighted ? 150 : 100}
+                        height={testimonial.isHighlighted ? 150 : 100}
+                        quality={80}
+                        className="w-full h-full object-cover"
                         loading="lazy"
                       />
                     </div>
                     <div>
-                      <h3 className="font-serif-custom text-base font-medium text-white">
+                      <h3 className="font-serif-custom text-base font-medium text-white flex items-center gap-1.5">
                         {testimonial.name}
                       </h3>
                       <p className="text-[10px] uppercase tracking-[0.18em] text-[#D4AF37]">

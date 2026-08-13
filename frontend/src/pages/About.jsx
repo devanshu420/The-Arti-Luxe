@@ -141,7 +141,7 @@ export default function About() {
             </h1>
 
             <p className="mt-6 text-gray-300 text-sm sm:text-base leading-relaxed font-light">
-              Welcome to Luxé Beauty Studio. Founded by <strong className="text-white font-medium">Arti Sharma</strong>, our studio is dedicated to delivering flawless bridal and celebrity makeup artistry. With over 8 years of professional experience, Arti believes that true beauty lies in enhancing your natural facial structure rather than masking it.
+              Welcome to Luxé Beauty Studio. Founded by <strong className="text-white font-medium">Arti Sharma</strong>, our studio is dedicated to delivering flawless bridal and celebrity makeup artistry. With over 5 years of professional experience, Arti believes that true beauty lies in enhancing your natural facial structure rather than masking it.
             </p>
 
             <p className="mt-4 text-gray-400 text-sm leading-relaxed font-light">
