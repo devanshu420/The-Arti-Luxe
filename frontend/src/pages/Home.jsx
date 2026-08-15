@@ -9,26 +9,6 @@ import Testimonials from '../components/sections/Testimonials';
 import ContactBanner from '../components/sections/ContactBanner';
 
 export default function Home() {
-  useEffect(() => {
-    document.title =
-      'The Arti Luxe | Professional Bridal Makeup Artist';
-
-    // Update description for the homepage
-    const description =
-      'The Arti Luxe offers professional bridal makeup, party makeup and luxury beauty services with a personalized and elegant beauty experience.';
-
-    let metaDescription = document.querySelector(
-      'meta[name="description"]'
-    );
-
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.setAttribute('name', 'description');
-      document.head.appendChild(metaDescription);
-    }
-
-    metaDescription.setAttribute('content', description);
-  }, []);
 
   return (
     <main
