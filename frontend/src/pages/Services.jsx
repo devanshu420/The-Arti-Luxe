@@ -267,11 +267,6 @@ export default function Services() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050505] text-white font-sans pt-24 sm:pt-28 pb-20">
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-        .font-script { font-family: 'Great Vibes', cursive; }
-        .font-serif-custom { font-family: 'Playfair Display', serif; }
-      `}</style>
 
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

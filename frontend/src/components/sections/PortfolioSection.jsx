@@ -12,45 +12,61 @@ export default function PortfolioSection() {
     {
       id: 1,
       category: "bridal",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2013.06.55%20(1).jpeg?updatedAt=1786013564919",
-      title: "Bridal Look",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2013.06.55%20(1).jpeg?updatedAt=1786013564919",
+      title: "Elegant Bridal Makeup Look",
+      alt: "Elegant bridal makeup look by The Arti Luxe",
     },
     {
       id: 2,
       category: "bridal",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2013.06.55%20(2).jpeg?updatedAt=1786013564853",
-      title: "Bridal Look",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2013.06.55%20(2).jpeg?updatedAt=1786013564853",
+      title: "Luxury Bridal Makeup",
+      alt: "Luxury bridal makeup artistry by The Arti Luxe",
     },
     {
       id: 3,
       category: "party",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2017.00.10.jpeg",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2017.00.10.jpeg",
       title: "Halloween Look",
+      title: "Glamorous Party Makeup",
+      alt: "Glamorous party makeup look by The Arti Luxe",
     },
     {
       id: 4,
       category: "reception",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2016.23.05%20(1).jpeg?updatedAt=1786013653310",
-      title: "Glam Look",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2016.23.05%20(1).jpeg?updatedAt=1786013653310",
+      title: "Reception Glam Makeup",
+      alt: "Elegant reception makeup look by The Arti Luxe",
     },
     {
       id: 5,
       category: "editorial",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2016.23.05%20(2).jpeg?updatedAt=1786013653318",
-      title: "Smooth Look",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2016.23.05%20(2).jpeg?updatedAt=1786013653318",
+      title: "Luxury Editorial Makeup",
+      alt: "Luxury editorial makeup look by The Arti Luxe",
     },
     {
       id: 6,
       category: "editorial",
-      image: "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2017.01.35.jpeg",
+      image:
+        "https://ik.imagekit.io/asdf5690/Makeup/Gallery/WhatsApp%20Image%202026-08-06%20at%2017.01.35.jpeg",
       title: "Model Look",
+      title: "Professional Model Makeup",
+      alt: "Professional model makeup look by The Arti Luxe",
     },
   ];
 
   const filteredItems =
     activeCategory === "all"
       ? portfolioItems
-      : portfolioItems.filter((item) => item.category === activeCategory.toLowerCase());
+      : portfolioItems.filter(
+          (item) => item.category === activeCategory.toLowerCase(),
+        );
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,16 +89,28 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-background-secondary py-10 sm:py-16 lg:py-20">
+    <section
+      id="portfolio"
+      aria-labelledby="portfolio-heading"
+      className="relative overflow-hidden bg-background-secondary py-10 sm:py-16 lg:py-20"
+    >
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <motion.div
-          animate={shouldReduceMotion ? {} : { y: [0, -16, 0], opacity: [0.16, 0.3, 0.16] }}
+          animate={
+            shouldReduceMotion
+              ? {}
+              : { y: [0, -16, 0], opacity: [0.16, 0.3, 0.16] }
+          }
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute left-[-10%] top-16 h-80 w-80 rounded-full bg-[#D4AF37]/14 blur-3xl"
         />
         <motion.div
-          animate={shouldReduceMotion ? {} : { y: [0, 18, 0], opacity: [0.12, 0.24, 0.12] }}
+          animate={
+            shouldReduceMotion
+              ? {}
+              : { y: [0, 18, 0], opacity: [0.12, 0.24, 0.12] }
+          }
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute right-[-8%] bottom-10 h-96 w-96 rounded-full bg-[#F6E27A]/10 blur-3xl"
         />
@@ -118,8 +146,8 @@ export default function PortfolioSection() {
             variants={itemVariants}
             className="mx-auto mt-2 sm:mt-3 max-w-xl text-xs sm:text-sm lg:text-base leading-relaxed text-text-secondary font-light px-2"
           >
-            A curated gallery of bridal, party, editorial, and luxury beauty looks
-            crafted with premium artistry and cinematic detail.
+            A curated gallery of bridal, party, editorial, and luxury beauty
+            looks crafted with premium artistry and cinematic detail.
           </motion.p>
         </motion.div>
 
@@ -139,14 +167,14 @@ export default function PortfolioSection() {
               className="group relative w-full overflow-hidden rounded-xl border border-[#D4AF37]/20 bg-[#111111]/80 shadow-md aspect-[3/4]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              
+
               <img
                 src={item.image}
                 alt={item.title}
                 loading="lazy"
                 className="h-full w-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
               />
-              
+
               {/* Gradient overlay: static subtle on mobile, interactive on hover for desktop */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-[#050505]/30 to-transparent sm:opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -173,7 +201,10 @@ export default function PortfolioSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <Link to="/portfolio">
+          <Link
+            to="/portfolio"
+            aria-label="View The Arti Luxe makeup portfolio"
+          >
             <Button
               variant="secondary"
               size="md"
