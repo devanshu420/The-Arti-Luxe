@@ -8,7 +8,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || "https://www.theartiluxe.co
 
 export default function Contact() {
   useEffect(() => {
-    document.title = "Contact - Luxé Beauty Studio";
+    document.title = "Contact The Arti Luxe | Makeup Artist";
   }, []);
 
   const [formData, setFormData] = useState({

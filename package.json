@@ -1,5 +1,5 @@
 {
-  "name": "Arti Makeup Artist",
+  "name": "The Arti Luxe | Professional Bridal Makeup Artist",
   "version": "1.0.0",
   "description": "Premium makeup studio website - MERN stack",
   "main": "backend/server.js",
@@ -16,6 +16,6 @@
     "beauty",
     "studio"
   ],
-  "author": "Arti Makeup Artist",
+  "author": "The Arti Luxe | Professional Bridal Makeup Artist",
   "license": "MIT"
 }

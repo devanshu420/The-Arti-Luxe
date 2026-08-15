@@ -233,7 +233,7 @@ export default function Services() {
   const [activeModalImage, setActiveModalImage] = useState(null);
 
   useEffect(() => {
-    document.title = "Services - Luxé Beauty Studio";
+    document.title = "Makeup Services | The Arti Luxe";
   }, []);
 
   // AUTOMATICALLY ASSIGN PORTFOLIO IMAGES TO SERVICES BASED ON CATEGORY MATCH

@@ -194,7 +194,7 @@ export default function Portfolio() {
   const [likedItems, setLikedItems] = useState({});
 
   useEffect(() => {
-    document.title = "Portfolio Gallery - Luxé Beauty";
+    document.title = "Makeup Portfolio | The Arti Luxe";
   }, []);
 
   const filteredItems =

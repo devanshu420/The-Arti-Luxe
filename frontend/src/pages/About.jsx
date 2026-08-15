@@ -16,7 +16,7 @@ const founderPhoto = "https://ik.imagekit.io/asdf5690/Makeup/Arti%20Photo.jpeg?u
 
 export default function About() {
   useEffect(() => {
-    document.title = "About Arti Sharma - Luxé Beauty Studio";
+    document.title = "About The Arti Luxe | Professional Makeup Artist";
   }, []);
 
   const stats = [

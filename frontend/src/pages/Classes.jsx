@@ -23,7 +23,7 @@ export default function Classes() {
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   useEffect(() => {
-    document.title = "Makeup & Grooming Classes - Luxé Beauty Academy";
+    document.title = "Makeup Classes | The Arti Luxe";
   }, []);
 
   const courses = [
