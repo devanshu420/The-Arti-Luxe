@@ -37,7 +37,7 @@ export default function Hero() {
   const socials = [
     {
       icon: Instagram,
-      href: "https://www.instagram.com/arti_sharma.makeupartist?igsh=MXA1eTc0cWxlbWpyZA%3D%3D&utm_source=qr",
+      href: "https://www.instagram.com/the_arti_luxe/",
       name: "Instagram",
       hoverClass:
         "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:text-white hover:border-transparent hover:shadow-[0_0_15px_rgba(220,39,67,0.6)]",
@@ -154,7 +154,7 @@ export default function Hero() {
         >
           {/* SUBTITLE & HANDWRITTEN ACCENT */}
           <motion.div variants={fadeUp} className="flex items-center flex-wrap gap-2 sm:gap-3 mb-2">
-            <div className="h-[1px] w-8 sm:w-12 bg-[#D4AF37]" />
+            <div className="h-px w-8 sm:w-12 bg-[#D4AF37]" />
             <span className="uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[10px] sm:text-[11px] text-gray-200 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               BE YOUR OWN KIND OF
             </span>
@@ -176,7 +176,7 @@ export default function Hero() {
           {/* DESCRIPTION */}
           <motion.p
             variants={fadeUp}
-            className="mt-3 sm:mt-6 max-w-[520px] text-gray-200 text-xs sm:text-base leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]"
+            className="mt-3 sm:mt-6 max-w-130 text-gray-200 text-xs sm:text-base leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]"
           >
             Flawless HD bridal glam aur luxury styling ke saath, Senior Artist <span className="text-white font-medium">Arti Sharma</span> New Delhi ki ek behtareen aur trusted makeup artist hain.
             <br className="hidden sm:block" />
@@ -221,7 +221,7 @@ export default function Hero() {
             variants={fadeUp}
             className="mt-8 sm:mt-16 pt-4 sm:pt-8 border-t border-white/15"
           >
-            <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-3 sm:gap-6 relative max-w-[620px] pb-2 sm:pb-0 scrollbar-none">
+            <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-3 sm:gap-6 relative max-w-155 pb-2 sm:pb-0 scrollbar-none">
               {features.map((feature) => (
                 <div 
                   key={feature.title} 
