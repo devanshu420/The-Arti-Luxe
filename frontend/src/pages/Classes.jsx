@@ -17,7 +17,7 @@ import {
 
 // Certificate Image Placeholder
 const certificateImg =
-  "https://images.unsplash.com/photo-1589330694653-ded6df03f754?q=80&w=1200&auto=format&fit=crop";
+  "https://ik.imagekit.io/asdf5690/Makeup/Certificate%20Arti.jpeg?updatedAt=1786801463608";
 
 export default function Classes() {
   const [selectedCourse, setSelectedCourse] = useState(null);
