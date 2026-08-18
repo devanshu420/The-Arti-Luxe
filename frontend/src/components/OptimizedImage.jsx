@@ -1,68 +1,72 @@
-import { useState } from "react";
-import { getOptimizedImageUrl, generateSrcSet } from "../utils/Imagekit";
+import React, { useState } from "react";
+import { getOptimizedImageUrl } from "../utils/Imagekit";
 
-/**
- * Reusable Optimized Image Component
- */
 export default function OptimizedImage({
   src,
-  alt = "The Arti Luxe - Luxury Bridal & Makeup",
+  alt = "",
   width,
   height,
-  quality = 75,
-  priority = false, // If true: loading="eager", fetchpriority="high"
-  sizes = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 800px",
-  responsiveWidths = [400, 600, 800, 1200],
+  quality = 80,
   className = "",
+  loading = "lazy",
+  fetchPriority = "auto",
+  objectFit, // Destructured here to prevent leaking to <img />
+  fallback,  // Destructured here
+  priority,  // Destructured here
+  responsiveWidths,
+  sizes,
   style = {},
-  objectFit = "cover",
-  aspectRatio,
   ...props
 }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Generate main optimized source URL
+  // Generate main image URL
   const optimizedSrc = getOptimizedImageUrl(src, {
-    width: width || 800,
+    width,
     height,
     quality,
     format: "auto",
   });
 
-  // Generate dynamic srcSet for responsive loading
-  const srcSetString = generateSrcSet(src, responsiveWidths, {
-    quality,
-    format: "auto",
-  });
+  // Generate srcset if responsiveWidths are provided
+  const srcSet = responsiveWidths
+    ? responsiveWidths
+        .map((w) => {
+          const url = getOptimizedImageUrl(src, { width: w, quality, format: "auto" });
+          return `${url} ${w}w`;
+        })
+        .join(", ")
+    : undefined;
+
+  // Combine styles safely
+  const imageStyle = {
+    ...style,
+    ...(objectFit ? { objectFit } : {}),
+  };
 
   return (
-    <div
-      className={`relative overflow-hidden bg-zinc-900 ${
-        !isLoaded ? "animate-pulse" : ""
-      }`}
-      style={{
-        aspectRatio: aspectRatio || (width && height ? `${width}/${height}` : undefined),
-        ...style,
-      }}
-    >
+    <div className={`relative overflow-hidden ${className}`}>
+      {/* Shimmer skeleton while loading */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-neutral-900/60 overflow-hidden">
+          <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.8s_infinite] bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent" />
+        </div>
+      )}
+
       <img
         src={optimizedSrc}
-        srcSet={srcSetString}
-        sizes={sizes}
         alt={alt}
         width={width}
         height={height}
-        loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
-        decoding={priority ? "sync" : "async"}
+        loading={priority ? "eager" : loading}
+        fetchpriority={priority ? "high" : fetchPriority}
+        srcSet={srcSet}
+        sizes={sizes}
+        style={imageStyle}
         onLoad={() => setIsLoaded(true)}
-        className={`w-full h-full transition-opacity duration-300 ${
-          objectFit === "cover"
-            ? "object-cover"
-            : objectFit === "contain"
-            ? "object-contain"
-            : ""
-        } ${isLoaded ? "opacity-100" : "opacity-0"} ${className}`}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
         {...props}
       />
     </div>

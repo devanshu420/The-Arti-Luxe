@@ -16,6 +16,38 @@ import {
 } from "lucide-react";
 import OptimizedImage from "../components/OptimizedImage";
 import { getOptimizedImageUrl } from "../utils/Imagekit";
+import GoldSparklesBackground from "../components/ui/GoldSparklesBackground";
+
+// Luxury Shimmer Skeleton for Service Cards
+function ServiceCardSkeleton() {
+  return (
+    <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/5 bg-[#0e0e0e] p-6 sm:p-7 min-h-[380px]">
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent" />
+      
+      <div className="relative z-10 space-y-5">
+        <div className="flex items-center justify-between">
+          <div className="h-12 w-12 sm:h-14 sm:w-14 rounded-2xl bg-neutral-900 border border-neutral-800" />
+          <div className="h-6 w-24 rounded-full bg-neutral-900" />
+        </div>
+        <div className="space-y-2.5 pt-2">
+          <div className="h-7 w-3/4 rounded-lg bg-neutral-900" />
+          <div className="h-4 w-full rounded bg-neutral-900/80" />
+          <div className="h-4 w-5/6 rounded bg-neutral-900/60" />
+        </div>
+        <div className="flex flex-wrap gap-2 pt-2">
+          <div className="h-6 w-24 rounded-lg bg-neutral-900/70" />
+          <div className="h-6 w-28 rounded-lg bg-neutral-900/70" />
+          <div className="h-6 w-20 rounded-lg bg-neutral-900/70" />
+        </div>
+      </div>
+
+      <div className="relative z-10 pt-6 border-t border-neutral-900 flex items-center justify-between">
+        <div className="h-4 w-32 rounded bg-neutral-900" />
+        <div className="h-8 w-8 rounded-full bg-neutral-900" />
+      </div>
+    </div>
+  );
+}
 
 // Unique categories array
 const categories = ["BRIDAL", "RECEPTION", "PARTY", "HAIR DO", "HALLOWEEN", "EDITORIAL"];
@@ -231,12 +263,16 @@ const rawServices = [
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
   const [activeModalImage, setActiveModalImage] = useState(null);
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  const [isModalImgLoading, setIsModalImgLoading] = useState(true);
 
   useEffect(() => {
     document.title = "Makeup Services | The Arti Luxe";
+    const timer = setTimeout(() => setIsDataLoading(false), 450);
+    return () => clearTimeout(timer);
   }, []);
 
-  // AUTOMATICALLY ASSIGN PORTFOLIO IMAGES TO SERVICES BASED ON CATEGORY MATCH
+  // Automatically assign portfolio images to services based on category match
   const services = useMemo(() => {
     return rawServices.map((service) => {
       const matchedImages = portfolioDatabase
@@ -253,6 +289,13 @@ export default function Services() {
   const handleOpenGallery = (service) => {
     setSelectedService(service);
     setActiveModalImage(service.images[0]);
+    setIsModalImgLoading(true);
+  };
+
+  const handleSwitchModalImage = (imgUrl) => {
+    if (activeModalImage === imgUrl) return;
+    setIsModalImgLoading(true);
+    setActiveModalImage(imgUrl);
   };
 
   const pageVariants = {
@@ -266,15 +309,12 @@ export default function Services() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#050505] text-white font-sans pt-24 sm:pt-28 pb-20">
+    <main className="relative min-h-screen overflow-hidden bg-[#050505] text-white font-sans pt-24 sm:pt-28 pb-20 select-none">
 
-      {/* Background Glows */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -left-37.5 top-10 h-125 w-125 rounded-full bg-[#D4AF37]/10 blur-[180px]" />
-        <div className="absolute right-[-150px] top-1/3 h-[600px] w-150 rounded-full bg-[#D4AF37]/10 blur-[200px]" />
-      </div>
+      {/* Imported Sparkles Background */}
+      <GoldSparklesBackground />
 
-      <div className="relative mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
+      <div className="relative z-10 mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-12">
         <motion.section
           variants={pageVariants}
           initial="hidden"
@@ -282,9 +322,9 @@ export default function Services() {
           className="py-4 sm:py-6"
         >
           {/* Header */}
-          <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/30 bg-black/60 px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs text-[#D4AF37] backdrop-blur-md tracking-[0.2em] uppercase font-semibold shadow-[0_0_20px_rgba(212,175,55,0.15)]">
-              <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+          <motion.div variants={fadeUp} className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/35 bg-[#0a0a0a]/80 px-4 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs text-[#D4AF37] backdrop-blur-md tracking-[0.25em] uppercase font-semibold shadow-[0_0_25px_rgba(212,175,55,0.18)]">
+              <Sparkles className="h-3 w-3 sm:h-3.5 sm:w-3.5 animate-spin-slow text-[#D4AF37]" />
               BESPOKE BEAUTY EXPERIENCES
             </div>
 
@@ -297,91 +337,95 @@ export default function Services() {
             </p>
           </motion.div>
 
-          {/* Service Cards Grid - Upgraded UI */}
+          {/* Service Cards Grid */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-[1400px] mx-auto">
-            {services.map((service) => {
-              const Icon = service.icon;
+            {isDataLoading
+              ? Array.from({ length: 6 }).map((_, index) => (
+                  <ServiceCardSkeleton key={index} />
+                ))
+              : services.map((service) => {
+                  const Icon = service.icon;
 
-              return (
-                <motion.div
-                  key={service.id}
-                  variants={fadeUp}
-                  whileHover={{ y: -8 }}
-                  onClick={() => handleOpenGallery(service)}
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#121212] via-[#0a0a0a] to-black p-6 sm:p-7 cursor-pointer backdrop-blur-xl transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_10px_40px_rgba(212,175,55,0.25)]"
-                >
-                  {/* Subtle Top Gold Gradient Flare */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent group-hover:via-[#D4AF37] transition-all duration-500" />
+                  return (
+                    <motion.div
+                      key={service.id}
+                      variants={fadeUp}
+                      whileHover={{ y: -8 }}
+                      onClick={() => handleOpenGallery(service)}
+                      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#141414] via-[#0a0a0a] to-[#050505] p-6 sm:p-7 cursor-pointer backdrop-blur-xl transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_12px_45px_rgba(212,175,55,0.25)]"
+                    >
+                      {/* Top Golden Light Streak */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1.5px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent group-hover:via-[#FFE57F] transition-all duration-500" />
 
-                  {/* Thumbnail Preview Blur Corner Effect */}
-                  <div className="absolute right-0 top-0 w-36 h-36 opacity-25 pointer-events-none overflow-hidden rounded-bl-full border-l border-b border-[#D4AF37]/20 transition-all duration-500 group-hover:scale-110 group-hover:opacity-40">
-                    <OptimizedImage
-                      src={service.images[0]}
-                      alt={service.name}
-                      width={200}
-                      quality={60}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
-                    />
-                  </div>
-
-                  <div className="relative z-10">
-                    {/* Header Row */}
-                    <div className="flex items-center justify-between">
-                      <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl border border-[#D4AF37]/40 bg-black/80 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black group-hover:shadow-[0_0_20px_rgba(212,175,55,0.5)] transition-all duration-300">
-                        <Icon className="h-6 w-6" strokeWidth={1.5} />
+                      {/* Thumbnail Preview Effect */}
+                      <div className="absolute right-0 top-0 w-36 h-36 opacity-30 pointer-events-none overflow-hidden rounded-bl-full border-l border-b border-[#D4AF37]/30 transition-all duration-500 group-hover:scale-110 group-hover:opacity-50">
+                        <OptimizedImage
+                          src={service.images[0]}
+                          alt={service.name}
+                          width={220}
+                          quality={65}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-125"
+                        />
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/10 text-[10px] text-gray-300 font-medium backdrop-blur-md">
-                          <Images size={11} className="text-[#D4AF37]" />
-                          {service.images.length} Photos
-                        </span>
+                      <div className="relative z-10">
+                        {/* Header Row */}
+                        <div className="flex items-center justify-between">
+                          <div className="relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-2xl border border-[#D4AF37]/40 bg-black/80 text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black group-hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] transition-all duration-300">
+                            <Icon className="h-6 w-6" strokeWidth={1.5} />
+                          </div>
 
-                        {service.tag && (
-                          <span className="rounded-full bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] px-2.5 py-1 text-[8px] sm:text-[9px] font-bold tracking-wider text-black uppercase shadow-sm">
-                            {service.tag}
-                          </span>
-                        )}
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/10 text-[10px] text-gray-300 font-medium backdrop-blur-md">
+                              <Images size={11} className="text-[#D4AF37]" />
+                              {service.images.length} Photos
+                            </span>
+
+                            {service.tag && (
+                              <span className="rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#D4AF37] px-2.5 py-1 text-[8px] sm:text-[9px] font-bold tracking-wider text-black uppercase shadow-sm">
+                                {service.tag}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-serif-custom mt-6 text-xl sm:text-2xl font-medium text-white tracking-wide group-hover:text-[#D4AF37] transition-colors duration-300">
+                          {service.name}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-gray-400 font-light group-hover:text-gray-300 transition-colors">
+                          {service.desc}
+                        </p>
+
+                        {/* Feature Badges */}
+                        <div className="mt-5 flex flex-wrap gap-1.5">
+                          {service.features.map((feat, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-lg bg-white/5 text-gray-300 border border-white/5 group-hover:border-[#D4AF37]/30 group-hover:bg-black/50 transition-colors"
+                            >
+                              <CheckCircle2 size={11} className="text-[#D4AF37]" />
+                              {feat}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Title */}
-                    <h3 className="font-serif-custom mt-6 text-xl sm:text-2xl font-medium text-white tracking-wide group-hover:text-[#D4AF37] transition-colors duration-300">
-                      {service.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-gray-400 font-light group-hover:text-gray-300 transition-colors">
-                      {service.desc}
-                    </p>
-
-                    {/* Feature Badges */}
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                      {service.features.map((feat, i) => (
-                        <span
-                          key={i}
-                          className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] px-2.5 py-1 rounded-lg bg-white/5 text-gray-300 border border-white/5 group-hover:border-[#D4AF37]/20 group-hover:bg-black/40 transition-colors"
-                        >
-                          <CheckCircle2 size={11} className="text-[#D4AF37]" />
-                          {feat}
+                      {/* Bottom Bar */}
+                      <div className="relative z-10 mt-7 pt-4 border-t border-white/10 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase group-hover:translate-x-1.5 transition-transform duration-300">
+                          VIEW LOOKBOOK <ArrowRight className="h-3.5 w-3.5" />
                         </span>
-                      ))}
-                    </div>
-                  </div>
 
-                  {/* Bottom Bar */}
-                  <div className="relative z-10 mt-7 pt-4 border-t border-white/10 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase group-hover:translate-x-1.5 transition-transform duration-300">
-                      VIEW LOOKBOOK <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-
-                    <div className="h-8 w-8 rounded-full border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black transition-all duration-300">
-                      <Maximize2 size={13} />
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                        <div className="h-8 w-8 rounded-full border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-black transition-all duration-300">
+                          <Maximize2 size={13} />
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
           </div>
         </motion.section>
       </div>
@@ -393,56 +437,74 @@ export default function Services() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-3 pt-16 sm:p-6"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex items-center justify-center p-3 pt-16 sm:p-6"
             onClick={() => setSelectedService(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.92, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative max-w-5xl w-full max-h-[85vh] sm:max-h-[90vh] bg-[#0a0a0a] border border-[#D4AF37]/40 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_60px_rgba(212,175,55,0.25)]"
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ type: "spring", damping: 26, stiffness: 320 }}
+              className="relative max-w-5xl w-full max-h-[85vh] sm:max-h-[90vh] bg-[#0c0c0c] border border-[#D4AF37]/40 rounded-2xl overflow-hidden grid md:grid-cols-12 shadow-[0_0_70px_rgba(212,175,55,0.3)]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
+              {/* Modal Close Button */}
               <button
                 onClick={() => setSelectedService(null)}
-                className="absolute top-4 right-4 z-30 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/80 border border-white/20 text-white hover:text-[#D4AF37] flex items-center justify-center transition-colors shadow-lg"
+                className="absolute top-4 right-4 z-30 h-8 w-8 sm:h-10 sm:w-10 rounded-full bg-black/85 border border-white/20 text-white hover:text-[#D4AF37] hover:border-[#D4AF37] flex items-center justify-center transition-colors shadow-lg"
                 aria-label="Close modal"
               >
                 <X size={18} />
               </button>
 
-              {/* Left Column: Image Viewer */}
+              {/* Left Column: Image Viewer with Skeleton */}
               <div className="md:col-span-7 bg-black flex flex-col items-center justify-center relative p-2 max-h-[40vh] md:max-h-[85vh] overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
+                  
+                  {/* Shimmer on image load */}
+                  {isModalImgLoading && (
+                    <div className="absolute inset-0 bg-neutral-900/90 overflow-hidden flex items-center justify-center">
+                      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.8s_infinite] bg-gradient-to-r from-transparent via-[#D4AF37]/15 to-transparent" />
+                      <Sparkles className="w-8 h-8 text-[#D4AF37]/40 animate-pulse" />
+                    </div>
+                  )}
+
                   <img
                     src={getOptimizedImageUrl(activeModalImage, { width: 1000, quality: 85, format: "auto" })}
                     alt={selectedService.name}
-                    className="w-full h-full object-contain rounded-lg"
+                    onLoad={() => setIsModalImgLoading(false)}
+                    className={`w-full h-full object-contain rounded-lg transition-opacity duration-300 ${
+                      isModalImgLoading ? "opacity-0" : "opacity-100"
+                    }`}
                   />
                 </div>
 
                 {/* Thumbnails Row */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 p-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 max-w-[90%] overflow-x-auto">
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 p-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 max-w-[90%] overflow-x-auto">
                   {selectedService.images.map((imgUrl, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setActiveModalImage(imgUrl)}
+                      onClick={() => handleSwitchModalImage(imgUrl)}
                       className={`relative h-10 w-10 sm:h-12 sm:w-12 rounded-lg overflow-hidden shrink-0 border transition-all ${
                         activeModalImage === imgUrl
-                          ? "border-[#D4AF37] scale-105 shadow-[0_0_10px_rgba(212,175,55,0.6)]"
+                          ? "border-[#D4AF37] scale-105 shadow-[0_0_12px_rgba(212,175,55,0.7)]"
                           : "border-transparent opacity-60 hover:opacity-100"
                       }`}
                     >
-                      <OptimizedImage src={imgUrl} alt="Thumbnail" width={100} quality={60} className="w-full h-full object-cover" />
+                      <OptimizedImage
+                        src={imgUrl}
+                        alt="Thumbnail"
+                        width={100}
+                        quality={60}
+                        className="w-full h-full object-cover"
+                      />
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Right Column: Service Details */}
-              <div className="md:col-span-5 p-5 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10 overflow-y-auto">
+              <div className="md:col-span-5 p-5 sm:p-8 flex flex-col justify-between border-t md:border-t-0 md:border-l border-white/10 overflow-y-auto bg-[#0a0a0a]">
                 <div>
                   <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] font-semibold">
                     {selectedService.category} LOOKBOOK
@@ -478,7 +540,7 @@ export default function Services() {
 
                   <a
                     href="/contact"
-                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all bg-black/40"
+                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-full border border-[#D4AF37] text-[10px] sm:text-xs font-semibold tracking-[0.15em] text-[#D4AF37] uppercase hover:bg-[#D4AF37] hover:text-black transition-all bg-black/40 shadow-[0_0_15px_rgba(212,175,55,0.2)]"
                   >
                     BOOK SERVICE
                   </a>

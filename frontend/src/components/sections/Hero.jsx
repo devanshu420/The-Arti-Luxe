@@ -58,20 +58,34 @@ export default function Hero() {
     },
   ];
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 25 },
+  // Luxury Stagger Container Variant
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.12,
+        delayChildren: reduceMotion ? 0 : 0.15,
+      },
+    },
+  };
+
+  // Smooth Elegant Rise Variant
+  const smoothFadeUp = {
+    hidden: { opacity: 0, y: 30 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: reduceMotion ? 0 : 0.6,
-        ease: "easeOut",
+        duration: reduceMotion ? 0 : 0.8,
+        ease: [0.16, 1, 0.3, 1], // Smooth cubic-bezier luxury curve
       },
     },
   };
 
   return (
-    <div className="relative min-h-[85vh] lg:min-h-screen w-full bg-[#050505] text-white font-sans overflow-hidden pt-16 sm:pt-20 lg:pt-24">
+    <div className="relative min-h-[85vh] lg:min-h-screen w-full bg-[#050505] text-white font-sans overflow-hidden pt-16 sm:pt-20 lg:pt-24 select-none">
+      
       {/* Google Fonts Preload */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
@@ -80,41 +94,49 @@ export default function Hero() {
       `}</style>
 
       {/* ========================================= */}
-      {/* BRIDAL IMAGE BACKGROUND */}
+      {/* BRIDAL IMAGE WITH CINEMATIC ZOOM REVEAL */}
       {/* ========================================= */}
-      <div className="absolute right-0 top-0 w-full lg:w-[60%] h-full z-0 overflow-hidden pointer-events-none">
+      <motion.div
+        initial={{ opacity: 0, scale: 1.08 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute right-0 top-0 w-full lg:w-[60%] h-full z-0 overflow-hidden pointer-events-none"
+      >
         <img
           src={bridal}
-          alt="Luxury Bridal Makeup"
-          className="w-full h-full object-cover object-[55%_center] lg:object-[40%_center] scale-105 opacity-85 lg:opacity-100 transition-opacity duration-500"
+          alt="The Arti Luxe Luxury Bridal Makeup"
+          className="w-full h-full object-cover object-[55%_center] lg:object-[40%_center] opacity-85 lg:opacity-100 filter brightness-[1.02] contrast-[1.04]"
         />
 
         {/* Soft Mobile Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent lg:hidden" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#050505] via-[#050505]/40 to-transparent lg:hidden" />
 
-        {/* Desktop Left Edge Fade */}
-        <div className="hidden lg:block absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-[#050505] via-[#050505]/50 to-transparent" />
+        {/* Desktop Left Edge Seamless Fade */}
+        <div className="hidden lg:block absolute inset-y-0 left-0 w-2/5 bg-linear-to-r from-[#050505] via-[#050505]/60 to-transparent" />
 
-        {/* ========================================= */}
-        {/* NEW TOP VIGNETTE (Makes Logo clearly visible) */}
-        {/* ========================================= */}
-        <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b from-[#050505] via-[#050505]/80 to-transparent z-10" />
+        {/* Top Vignette (Logo & Navbar Clarity) */}
+        <div className="absolute inset-x-0 top-0 h-24 sm:h-28 bg-linear-to-b from-[#050505] via-[#050505]/80 to-transparent z-10" />
 
         {/* Bottom Vignette */}
-        <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
-      </div>
+        <div className="absolute inset-x-0 bottom-0 h-20 sm:h-24 bg-linear-to-t from-[#050505] via-[#050505]/70 to-transparent" />
+      </motion.div>
 
       {/* ========================================= */}
-      {/* GOLD BACKGROUND AMBIENT GLOWS */}
+      {/* SUBTLE AMBIENT GLOW (CLEAN & MINIMAL) */}
       {/* ========================================= */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        <div className="absolute left-[-150px] top-[-50px] h-[350px] sm:h-[600px] w-[350px] sm:w-[600px] rounded-full bg-[#D4AF37]/15 blur-[100px] sm:blur-[180px]" />
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        <div className="absolute -left-25 -top-12.5 h-87.5 sm:h-125 w-87.5 sm:w-125 rounded-full bg-[#D4AF37]/8 blur-[120px]" />
       </div>
 
       {/* ========================================= */}
       {/* DESKTOP FLOATING SOCIAL ICONS (LEFT BAR) */}
       {/* ========================================= */}
-      <div className="hidden lg:flex fixed left-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-4">
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        className="hidden lg:flex fixed left-8 top-1/2 -translate-y-1/2 z-50 flex-col gap-4"
+      >
         {socials.map((social, index) => {
           const Icon = social.icon;
           return (
@@ -126,16 +148,16 @@ export default function Hero() {
               aria-label={social.name}
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
-              className={`h-11 w-11 rounded-full border border-[#D4AF37]/60 flex items-center justify-center text-[#D4AF37] transition-all duration-300 bg-black/60 backdrop-blur-md ${social.hoverClass}`}
+              className={`h-11 w-11 rounded-full border border-[#D4AF37]/60 flex items-center justify-center text-[#D4AF37] transition-all duration-300 bg-black/60 backdrop-blur-md shadow-lg ${social.hoverClass}`}
             >
               <Icon size={18} />
             </motion.a>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* ========================================= */}
-      {/* MAIN HERO CONTENT */}
+      {/* MAIN HERO CONTENT (STAGGER REVEAL) */}
       {/* ========================================= */}
       <div className="relative z-20 max-w-[1800px] mx-auto min-h-[calc(85vh-64px)] lg:min-h-[calc(100vh-80px)] grid lg:grid-cols-12 items-center px-5 sm:px-8 lg:px-16 pb-8 sm:pb-12">
         
@@ -143,17 +165,11 @@ export default function Hero() {
         <motion.div
           initial="hidden"
           animate="show"
-          variants={{
-            show: {
-              transition: {
-                staggerChildren: 0.12,
-              },
-            },
-          }}
+          variants={containerVariants}
           className="lg:col-span-8 xl:col-span-7 lg:pl-6 pt-2 sm:pt-4 lg:pt-6"
         >
           {/* SUBTITLE & HANDWRITTEN ACCENT */}
-          <motion.div variants={fadeUp} className="flex items-center flex-wrap gap-2 sm:gap-3 mb-2">
+          <motion.div variants={smoothFadeUp} className="flex items-center flex-wrap gap-2 sm:gap-3 mb-2">
             <div className="h-px w-8 sm:w-12 bg-[#D4AF37]" />
             <span className="uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[10px] sm:text-[11px] text-gray-200 font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
               BE YOUR OWN KIND OF
@@ -165,7 +181,7 @@ export default function Hero() {
 
           {/* MAIN HEADING */}
           <motion.h1
-            variants={fadeUp}
+            variants={smoothFadeUp}
             className="font-serif-custom text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-[1.15] sm:leading-[1.1] tracking-tight mt-2 sm:mt-4 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]"
           >
             Enhancing <span className="text-[#D4AF37] italic font-normal drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)]">Beauty,</span>
@@ -175,7 +191,7 @@ export default function Hero() {
 
           {/* DESCRIPTION */}
           <motion.p
-            variants={fadeUp}
+            variants={smoothFadeUp}
             className="mt-3 sm:mt-6 max-w-130 text-gray-200 text-xs sm:text-base leading-relaxed font-normal drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]"
           >
             Flawless HD bridal glam aur luxury styling ke saath, Senior Artist <span className="text-white font-medium">Arti Sharma</span> New Delhi ki ek behtareen aur trusted makeup artist hain.
@@ -186,7 +202,7 @@ export default function Hero() {
           </motion.p>
 
           {/* CTA BUTTON & MOBILE SOCIALS */}
-          <motion.div variants={fadeUp} className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+          <motion.div variants={smoothFadeUp} className="mt-5 sm:mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
             <Link
               to="/contact"
               className="inline-flex h-11 sm:h-12 items-center justify-center rounded-full border border-[#D4AF37] px-7 sm:px-8 text-xs font-semibold tracking-[0.2em] text-[#D4AF37] uppercase transition-all duration-300 hover:bg-[#D4AF37] hover:text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.5)] bg-black/70 backdrop-blur-md shadow-lg"
@@ -205,7 +221,7 @@ export default function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="h-10 w-10 rounded-full border border-[#D4AF37]/60 flex items-center justify-center text-[#D4AF37] bg-black/80 backdrop-blur-md"
+                    className="h-10 w-10 rounded-full border border-[#D4AF37]/60 flex items-center justify-center text-[#D4AF37] bg-black/80 backdrop-blur-md shadow-md"
                   >
                     <Icon size={16} />
                   </a>
@@ -215,24 +231,24 @@ export default function Hero() {
           </motion.div>
 
           {/* ========================================= */}
-          {/* COMPACT FEATURES BADGES ROW (MOBILE & DESKTOP) */}
+          {/* COMPACT FEATURES BADGES ROW */}
           {/* ========================================= */}
           <motion.div
-            variants={fadeUp}
+            variants={smoothFadeUp}
             className="mt-8 sm:mt-16 pt-4 sm:pt-8 border-t border-white/15"
           >
             <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-3 sm:gap-6 relative max-w-155 pb-2 sm:pb-0 scrollbar-none">
               {features.map((feature) => (
                 <div 
                   key={feature.title} 
-                  className="flex-shrink-0 flex flex-col items-center text-center group min-w-[75px] sm:min-w-0"
+                  className="shrink-0 flex flex-col items-center text-center group min-w-18.75 sm:min-w-0"
                 >
                   <div className="relative h-9 sm:h-14 w-9 sm:w-14 rounded-full border border-[#D4AF37] bg-black/80 backdrop-blur-md flex items-center justify-center text-[#D4AF37] transition-transform group-hover:scale-105 duration-300 shadow-[0_0_15px_rgba(0,0,0,0.8)]">
                     <feature.icon size={15} className="sm:hidden" strokeWidth={1.5} />
                     <feature.icon size={20} className="hidden sm:block" strokeWidth={1.5} />
                     <div className="absolute inset-0 rounded-full border border-[#D4AF37]/30 scale-110" />
                   </div>
-                  <h4 className="mt-1.5 sm:mt-3 text-[8px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-gray-100 font-semibold max-w-[80px] sm:max-w-[100px] leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                  <h4 className="mt-1.5 sm:mt-3 text-[8px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.18em] text-gray-100 font-semibold max-w-20 sm:max-w-25 leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                     {feature.title}
                   </h4>
                 </div>
@@ -245,7 +261,6 @@ export default function Hero() {
     </div>
   );
 }
-
 
 
 
